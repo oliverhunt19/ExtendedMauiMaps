@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedMauiMaps", "ExtendedMauiMaps\ExtendedMauiMaps.csproj", "{953B0CB8-E924-45A2-802C-C3142E13F547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiMapsOliverV2", "MauiMapsOliverV2\MauiMapsOliverV2.csproj", "{5B97F309-9487-4656-9164-BFC4B4E3E8AA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiMapsOliverV2Controls", "MauiMapsOliverV2Controls\MauiMapsOliverV2Controls.csproj", "{B9CAF96C-A39A-409A-A0B9-D079C33DF1CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{953B0CB8-E924-45A2-802C-C3142E13F547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{953B0CB8-E924-45A2-802C-C3142E13F547}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{953B0CB8-E924-45A2-802C-C3142E13F547}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{953B0CB8-E924-45A2-802C-C3142E13F547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B97F309-9487-4656-9164-BFC4B4E3E8AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B97F309-9487-4656-9164-BFC4B4E3E8AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B97F309-9487-4656-9164-BFC4B4E3E8AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B97F309-9487-4656-9164-BFC4B4E3E8AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CAF96C-A39A-409A-A0B9-D079C33DF1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CAF96C-A39A-409A-A0B9-D079C33DF1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CAF96C-A39A-409A-A0B9-D079C33DF1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CAF96C-A39A-409A-A0B9-D079C33DF1CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
