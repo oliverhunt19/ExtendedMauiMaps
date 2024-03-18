@@ -1,9 +1,6 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Graphics.Drawables;
 using Microsoft.Maui.Maps;
-using Microsoft.Maui.Maps.Platform;
-using System.ComponentModel;
 
 namespace MauiMapsOliverV2.Platforms.Android.Manager
 {
@@ -70,30 +67,30 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             nativeElement.Remove();
         }
 
-        protected override void UpdateAndroidElement(IMapPin mapElement, Marker androideleent, PropertyChangedEventArgs e)
-        {
-            e.UpdateElement((x) => androideleent.Position = x, mapElement.Location.ToALatLng(), nameof(IMapPin.Location));
-            e.UpdateElement((x) => androideleent.Snippet = x, mapElement.Address, nameof(IMapPin.Address));
-            e.UpdateElement((x) => androideleent.Title = x, mapElement.Label, nameof(IMapPin.Label));
-            e.UpdateElement((x) => androideleent.Rotation = x, (float) mapElement.PinRotation, nameof(IMapPin.PinRotation));
-            e.UpdateElement((x) => androideleent.Flat = x, mapElement.Flatten, nameof(IMapPin.Flatten));
-            e.UpdateElement((x) =>
-            {
-                IMauiContext? mauiContext = GetMauiContext.Invoke();
-                if(mauiContext is not null)
-                {
-                    x.LoadImage(mauiContext, result =>
-                    {
-                        if(result?.Value is BitmapDrawable bitmapDrawable)
-                        {
-                            androideleent.SetIcon(BitmapDescriptorFactory.FromBitmap(bitmapDrawable.Bitmap));
-                        }
-                    });
-                }
-            }
-            , mapElement.ImageSource, nameof(IMapPin.ImageSource));
+        //protected override void UpdateAndroidElement(IMapPin mapElement, Marker androideleent, PropertyChangedEventArgs e)
+        //{
+        //    e.UpdateElement((x) => androideleent.Position = x, mapElement.Location.ToALatLng(), nameof(IMapPin.Location));
+        //    e.UpdateElement((x) => androideleent.Snippet = x, mapElement.Address, nameof(IMapPin.Address));
+        //    e.UpdateElement((x) => androideleent.Title = x, mapElement.Label, nameof(IMapPin.Label));
+        //    e.UpdateElement((x) => androideleent.Rotation = x, (float) mapElement.PinRotation, nameof(IMapPin.PinRotation));
+        //    e.UpdateElement((x) => androideleent.Flat = x, mapElement.Flatten, nameof(IMapPin.Flatten));
+        //    e.UpdateElement((x) =>
+        //    {
+        //        IMauiContext? mauiContext = GetMauiContext.Invoke();
+        //        if(mauiContext is not null)
+        //        {
+        //            x.LoadImage(mauiContext, result =>
+        //            {
+        //                if(result?.Value is BitmapDrawable bitmapDrawable)
+        //                {
+        //                    androideleent.SetIcon(BitmapDescriptorFactory.FromBitmap(bitmapDrawable.Bitmap));
+        //                }
+        //            });
+        //        }
+        //    }
+        //    , mapElement.ImageSource, nameof(IMapPin.ImageSource));
             
             
-        }
+        //}
     }
 }

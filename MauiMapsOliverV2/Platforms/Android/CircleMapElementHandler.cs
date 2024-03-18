@@ -1,40 +1,32 @@
 ﻿using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.Handlers.MapElement;
+using MauiMapsOliverV2.Platforms.Android.MapElements;
 using Microsoft.Maui.Graphics.Platform;
-using Microsoft.Maui.Handlers;
-using Microsoft.Maui.Maps;
-using Microsoft.Maui.Maps.Handlers;
 using Microsoft.Maui.Maps.Platform;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Maui.Maps.Handlers
 {
-    public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, CircleOptions>
+    public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, MauiMapCircle>
     {
 
-        protected override CircleOptions CreateElement()
+        protected override MauiMapCircle CreateElement()
         {
             ICircleMapElement circleMap = VirtualView;
             return new CircleOptions().InvokeCenter(circleMap.Center.ToALatLng())
                 .InvokeRadius(circleMap.Radius.Meters);//.InvokeStrokePattern(new List<PatternItem>());
         }
 
-        protected override CircleOptions SetClickable(CircleOptions platformView, bool clickable)
+        protected override MauiMapCircle SetClickable(MauiMapCircle platformView, bool clickable)
         {
-            return platformView.Clickable(clickable);
+            return platformView. (clickable);
         }
 
-        protected override CircleOptions SetFill(CircleOptions circleOptions, SolidPaint? fill)
+        protected override MauiMapCircle SetFill(MauiMapCircle circleOptions, SolidPaint? fill)
         {
             if(fill is null)
             {
                 return circleOptions;
             }
-            circleOptions.InvokeFillColor(fill.Color.AsColor());
+            circleOptions.FillColor = fill.Color.AsColor();
             return circleOptions;
         }
 

@@ -1,7 +1,7 @@
 ﻿using Android.Gms.Maps;
+using MauiMapsOliverV2.Platforms.Android.MapElements;
 using Microsoft.Maui.Maps;
 using Microsoft.Maui.Platform;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace MauiMapsOliverV2.Platforms.Android.Manager
@@ -114,13 +114,13 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
                 if (map == null)
                     return;
                 IMauiContext? mauiContext = GetMauiContext.Invoke();
-                var options = polyline.ToHandler(mauiContext!)?.PlatformView as TAndroidOptions;
+                var options = polyline.ToHandler(mauiContext!)?.PlatformView as MauiMapElement<TAndroid>;
                 if (options != null)
                 {
                     // This is done so that the addition is done on the main thread
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        var nativePolyline = AddElement(options);
+                        var nativePolyline = options.AddToMap(map);
 
                         polyline.MapElementId = GetNativeID(nativePolyline);
 
@@ -137,18 +137,18 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             
         }
 
-        public void ElementUpdated(TMapElement mapElement, PropertyChangedEventArgs e)
-        {
-            TAndroid? android = GetNativeFromElement(mapElement);
-            if (android is null)
-            {
-                return;
-            }
+        //public void ElementUpdated(TMapElement mapElement, PropertyChangedEventArgs e)
+        //{
+        //    TAndroid? android = GetNativeFromElement(mapElement);
+        //    if (android is null)
+        //    {
+        //        return;
+        //    }
 
-            UpdateAndroidElement(mapElement,android,e);
-        }
+        //    UpdateAndroidElement(mapElement,android,e);
+        //}
 
-        protected abstract void UpdateAndroidElement(TMapElement mapElement, TAndroid androideleent, PropertyChangedEventArgs e);
+        //protected abstract void UpdateAndroidElement(TMapElement mapElement, TAndroid androideleent, PropertyChangedEventArgs e);
 
         protected TAndroid? GetNativeFromElement(IMapElement polygon)
         {

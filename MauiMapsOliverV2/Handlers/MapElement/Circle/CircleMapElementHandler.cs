@@ -21,7 +21,7 @@ namespace Microsoft.Maui.Maps.Handlers
         {
             [nameof(IMapStrokeElement.Stroke)] = MapStroke,
             [nameof(IMapStrokeElement.StrokeThickness)] = MapStrokeThickness,
-            //[nameof(IFilledMapElement.Fill)] = MapFill,
+            [nameof(IFilledMapElement.Fill)] = MapFill,
 #if MONOANDROID
 			["Geopath"] = MapGeopath,
 			[nameof(ICircleMapElement.Radius)] = MapRadius,

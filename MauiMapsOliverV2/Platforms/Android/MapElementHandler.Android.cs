@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Handlers;
+﻿using MauiMapsOliverV2.Platforms.Android.MapElements;
+using Microsoft.Maui.Handlers;
 
 namespace Microsoft.Maui.Maps.Handlers
 {
@@ -10,7 +11,7 @@ namespace Microsoft.Maui.Maps.Handlers
 	}
 
 	public abstract partial class MapElementHandler<TVirtualView, TPlatformView> : ElementHandler<TVirtualView, TPlatformView>
-		where TPlatformView : class
+		where TPlatformView : class, IMauiMapElement
 		where TVirtualView : class, IMapElement
 	{
     }

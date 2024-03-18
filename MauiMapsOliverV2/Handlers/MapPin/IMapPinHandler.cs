@@ -2,7 +2,7 @@
 using PlatformView = MapKit.IMKAnnotation;
 #elif ANDROID
 using Android.Gms.Maps;
-using PlatformView = Android.Gms.Maps.Model.MarkerOptions;
+using PlatformView = MauiMapsOliverV2.Platforms.Android.MapElements.MauiMapMarker;
 #elif WINDOWS
 using PlatformView = System.Object;
 #elif TIZEN

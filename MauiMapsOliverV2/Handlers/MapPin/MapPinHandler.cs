@@ -1,7 +1,7 @@
 ﻿#if __IOS__ || MACCATALYST
 using PlatformView = MapKit.IMKAnnotation;
 #elif ANDROID
-using PlatformView = Android.Gms.Maps.Model.MarkerOptions;
+using PlatformView = MauiMapsOliverV2.Platforms.Android.MapElements.MauiMapMarker;
 #elif WINDOWS
 using PlatformView = System.Object;
 #elif TIZEN
@@ -19,6 +19,13 @@ namespace Microsoft.Maui.Maps.Handlers
 			[nameof(IMapPin.Location)] = MapLocation,
 			[nameof(IMapPin.Label)] = MapLabel,
 			[nameof(IMapPin.Address)] = MapAddress,
+			[nameof(IMapPin.AnchorV)] = MapAnchor,
+			[nameof(IMapPin.AnchorU)] = MapAnchor,
+			[nameof(IMapPin.InfoWindowAnchorU)] = SetRotation,
+			[nameof(IMapPin.InfoWindowAnchorV)] = SetRotation,
+			[nameof(IMapPin.PinRotation)] = SetRotation,
+			[nameof(IMapPin.Flatten)] = SetRotation,
+			
 		};
 
 		public MapPinHandler() : base(Mapper)

@@ -8,13 +8,14 @@ using PlatformView = System.Object;
 #elif TIZEN
 using PlatformView = System.Object;
 #elif (NETSTANDARD || !PLATFORM) || (NET6_0 && !IOS && !ANDROID && !TIZEN)
+using MauiMapsOliverV2.Platforms.Android.MapElements;
 using PlatformView = System.Object;
 #endif
 
 namespace Microsoft.Maui.Maps.Handlers
 {
     public abstract partial class MapElementHandler<TVirtualView, TPlatformView> : IMapElementHandler
-        where TPlatformView : class
+        where TPlatformView : class, IMauiMapElement
         where TVirtualView : class, IMapElement
     {
 		public static IPropertyMapper<IMapStrokeElement, IMapElementHandler> Mapper = new PropertyMapper<IMapStrokeElement, IMapElementHandler>(ElementMapper)
