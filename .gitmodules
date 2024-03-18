@@ -1,0 +1,3 @@
+[submodule "Submodules/Maui.Controls.BetterMaps"]
+	path = Submodules/Maui.Controls.BetterMaps
+	url = https://github.com/dmariogatto/Maui.Controls.BetterMaps.git
