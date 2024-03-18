@@ -30,6 +30,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\FuelPricesAPI\Submodules\GeneralUtils\GeneralUtils\GeneralUtils.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Platforms\iOS\CircleMapElementHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
 	  </Compile>

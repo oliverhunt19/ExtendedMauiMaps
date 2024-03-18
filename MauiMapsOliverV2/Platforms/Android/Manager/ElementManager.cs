@@ -1,4 +1,5 @@
 ﻿using Android.Gms.Maps;
+using GeneralUtils;
 using Microsoft.Maui.Maps;
 using Microsoft.Maui.Platform;
 using System.ComponentModel;
@@ -20,9 +21,11 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
         //public IMauiContext MauiContext;
         //public GoogleMap Map;
 
-        protected readonly List<TAndroid> _aPolylines;
+        //protected readonly List<TAndroid> _aPolylines;
 
-        protected readonly List<TMapElement> mapElements;
+        //protected readonly List<TMapElement> mapElements;
+
+        protected readonly Mapper<TMapElement, TAndroid> MapAndroidMapper;
 
 
         protected ElementManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<TMapElement>> getMapElement)
@@ -30,8 +33,10 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             GetTMapElement = getMapElement;
             GetMauiContext = mauiContext;
             GetGoogleMap = map;
-            _aPolylines = new List<TAndroid>();
-            mapElements = new List<TMapElement>();
+            //_aPolylines = new List<TAndroid>();
+            //mapElements = new List<TMapElement>();
+
+            MapAndroidMapper = new Mapper<TMapElement, TAndroid>();
         }
 
         protected abstract TAndroid AddElement(TAndroidOptions options);
@@ -40,7 +45,9 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
         protected bool ElementClicked(TAndroid android)
         {
-            var pin = GetElementFromNative(android, mapElements);
+
+
+            var pin = MapAndroidMapper[android];//GetElementFromNative(android, mapElements);
 
             if(pin == null)
             {
@@ -66,11 +73,11 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
         public void ClearAll()
         {
-            foreach(var a in _aPolylines)
+            foreach(var a in MapAndroidMapper)
             {
-                ClearElementOnMainThread(a);
+                ClearElementOnMainThread(a.Value);
             }
-            _aPolylines.Clear();
+            MapAndroidMapper.Clear();
         }
 
         protected abstract void ClearElement(TAndroid nativeElement);
@@ -96,8 +103,9 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
                 return;
             }
             ClearElementOnMainThread(android);
-            mapElements.Remove(element);
-            _aPolylines.Remove(android);
+            MapAndroidMapper.Remove(element);
+            //mapElements.Remove(element);
+            //_aPolylines.Remove(android);
         }
 
 
@@ -124,8 +132,9 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
                         polyline.MapElementId = GetNativeID(nativePolyline);
 
-                        _aPolylines.Add(nativePolyline);
-                        mapElements.Add(polyline);
+                        MapAndroidMapper.Add(polyline, nativePolyline);
+                        //_aPolylines.Add(nativePolyline);
+                        //mapElements.Add(polyline);
                     });
                     
                 }
@@ -150,21 +159,23 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
         protected abstract void UpdateAndroidElement(TMapElement mapElement, TAndroid androideleent, PropertyChangedEventArgs e);
 
-        protected TAndroid? GetNativeFromElement(IMapElement polygon)
+        protected TAndroid? GetNativeFromElement(TMapElement polygon)
         {
-            if (_aPolylines != null && polygon.MapElementId is string)
-            {
-                for (int i = 0; i < _aPolylines.Count; i++)
-                {
-                    var native = _aPolylines[i];
-                    string id = GetNativeID(native);
-                    if (id == (string)polygon.MapElementId)
-                    {
-                        return native;
-                    }
-                }
-            }
-            return default;
+            return MapAndroidMapper[polygon];
+
+            //if (polygon.MapElementId is string)
+            //{
+            //    for (int i = 0; i < MapAndroidMapper.Count; i++)
+            //    {
+            //        var native = _aPolylines[i];
+            //        string id = GetNativeID(native);
+            //        if (id == (string)polygon.MapElementId)
+            //        {
+            //            return native;
+            //        }
+            //    }
+            //}
+            //return default;
         }
 
         protected abstract string GetNativeID(TAndroid nativeElement);
