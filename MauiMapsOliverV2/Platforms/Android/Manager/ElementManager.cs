@@ -16,7 +16,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 
         protected readonly Func<GoogleMap> GetGoogleMap;
 
-        protected readonly Mapper<TMapElement, TAndroid> MapAndroidMapper;
+        private readonly Mapper<TMapElement, TAndroid> _mapAndroidMapper;
 
 
         protected ElementManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map)
@@ -24,14 +24,12 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             GetMauiContext = mauiContext;
             GetGoogleMap = map;
 
-            MapAndroidMapper = new Mapper<TMapElement, TAndroid>();
+            _mapAndroidMapper = new Mapper<TMapElement, TAndroid>();
         }
 
         protected bool ElementClicked(TAndroid android)
         {
-
-
-            var pin = MapAndroidMapper[android];//GetElementFromNative(android, mapElements);
+            var pin = _mapAndroidMapper[android];
 
             if(pin == null)
             {
@@ -46,11 +44,11 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 
         public void ClearAll()
         {
-            foreach(var a in MapAndroidMapper)
+            foreach(var a in _mapAndroidMapper)
             {
                 ClearElementOnMainThread(a.Value);
             }
-            MapAndroidMapper.Clear();
+            _mapAndroidMapper.Clear();
         }
 
         protected abstract void ClearElement(TAndroid nativeElement);
@@ -77,7 +75,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             }
 
             ClearElementOnMainThread(android);
-            MapAndroidMapper.Remove(element);
+            _mapAndroidMapper.Remove(element);
         }
 
 
@@ -115,7 +113,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
                         TAndroid nativeElement = options.AddToMap(map);
 
                         mapElement.MapElementId = GetNativeID(nativeElement);
-                        MapAndroidMapper.Add(mapElement, nativeElement);
+                        _mapAndroidMapper.Add(mapElement, nativeElement);
                     });
                 }
             }
@@ -129,12 +127,12 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
         
         protected TAndroid? GetNativeFromElement(TMapElement polygon)
         {
-            return MapAndroidMapper[polygon];
+            return _mapAndroidMapper[polygon];
         }
 
         protected TMapElement GetMapElementFromNative(TAndroid native)
         {
-            return MapAndroidMapper[native];
+            return _mapAndroidMapper[native];
         }
 
         /// <summary>
