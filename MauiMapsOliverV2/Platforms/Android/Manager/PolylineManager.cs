@@ -9,7 +9,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
     {
 
 
-        public PolylineManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<IPolylineMapElement>> geoPathElements) : base(mauiContext, map, geoPathElements)
+        public PolylineManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map) : base(mauiContext, map)
         {
         }
 

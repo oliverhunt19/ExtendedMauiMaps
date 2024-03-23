@@ -24,10 +24,10 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             GetGoogleMap = map;
             this.GetMapElements = GetMapElements;
 
-            polygonManager = new PolygonManager(mauiContext, map, GetMapElementOfType<IPolygonMapElement>);
-            polylineManager = new PolylineManager(mauiContext, map, GetMapElementOfType<IPolylineMapElement>);
-            circleManager = new CircleManager(mauiContext, map, GetMapElementOfType<ICircleMapElement>);
-            markerManager = new MarkerManager(mauiContext, map, GetMapElementOfType<IMapPin>);
+            polygonManager = new PolygonManager(mauiContext, map);
+            polylineManager = new PolylineManager(mauiContext, map);
+            circleManager = new CircleManager(mauiContext, map);
+            markerManager = new MarkerManager(mauiContext, map);
 
             Map.PolylineClick += polylineManager.Map_PolylineClick;
             Map.PolygonClick += polygonManager.Map_PolygonClick;

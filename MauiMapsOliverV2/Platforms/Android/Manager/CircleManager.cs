@@ -8,7 +8,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class CircleManager : StrokeElementManager<ACircle, CircleOptions, ICircleMapElement>
     {
-        public CircleManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<ICircleMapElement>> mapElementClicked) : base(mauiContext, map, mapElementClicked)
+        public CircleManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map) : base(mauiContext, map)
         {
         }
 

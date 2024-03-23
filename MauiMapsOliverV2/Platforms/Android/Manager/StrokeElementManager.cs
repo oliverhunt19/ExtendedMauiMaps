@@ -11,7 +11,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
     {
         private ClickedPolyline? clickedPolyline;
 
-        protected StrokeElementManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<TMapElement>> mapElementClicked) : base(mauiContext, map, mapElementClicked)
+        protected StrokeElementManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map) : base(mauiContext, map)
         {
         }
 

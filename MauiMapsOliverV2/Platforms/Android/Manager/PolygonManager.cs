@@ -7,7 +7,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class PolygonManager : StrokeElementManager<APolygon, PolygonOptions, IPolygonMapElement>
     {
-        public PolygonManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<IPolygonMapElement>> mapElementClicked) : base(mauiContext, map, mapElementClicked)
+        public PolygonManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map) : base(mauiContext, map)
         {
         }
 
