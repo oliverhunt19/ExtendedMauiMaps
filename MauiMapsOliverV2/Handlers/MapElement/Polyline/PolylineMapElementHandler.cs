@@ -1,5 +1,4 @@
 ﻿using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapElement.Polyline;
 
 
 
@@ -18,7 +17,7 @@ using PlatformView = System.Object;
 using PlatformView = System.Object;
 #endif
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Polyline
 {
     public partial class PolylineMapElementHandler : IPolylineMapElementHandler
     {

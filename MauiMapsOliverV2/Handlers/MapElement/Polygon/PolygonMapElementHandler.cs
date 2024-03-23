@@ -1,7 +1,6 @@
 ﻿using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapElement.Polygon;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Polygon
 {
     public partial class PolygonMapElementHandler : IPolygonMapElementHandler
     {

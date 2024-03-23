@@ -1,9 +1,8 @@
 ﻿using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapElement.Circle;
 using ExtendedMauiMaps.Handlers.MapElement.Filled;
 using ExtendedMauiMaps.Platforms.iOS.MapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Circle
 {
     public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, MauiMapCircle>
     {

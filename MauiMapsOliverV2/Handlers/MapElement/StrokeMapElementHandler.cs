@@ -1,6 +1,5 @@
 ﻿using ExtendedMauiMaps.Core;
 using ExtendedMauiMaps.IMauiMapElements;
-using Microsoft.Maui.Maps.Handlers;
 
 namespace ExtendedMauiMaps.Handlers.MapElement
 {

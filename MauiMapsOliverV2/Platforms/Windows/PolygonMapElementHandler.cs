@@ -2,7 +2,7 @@
 using ExtendedMauiMaps.Handlers.MapElement.Filled;
 using ExtendedMauiMaps.Platforms.Windows.MapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Polygon
 {
     public partial class PolygonMapElementHandler : FilledMapElementHandler<IPolygonMapElement, MauiMapPolygon>
     {

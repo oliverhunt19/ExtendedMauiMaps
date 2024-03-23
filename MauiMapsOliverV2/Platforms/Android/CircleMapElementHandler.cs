@@ -3,7 +3,7 @@ using ExtendedMauiMaps.Handlers.MapElement.Filled;
 using ExtendedMauiMaps.Platforms.Android;
 using ExtendedMauiMaps.Platforms.Android.MapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Circle
 {
     public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, MauiMapCircle>
     {

@@ -1,5 +1,4 @@
 ﻿using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapElement.Circle;
 
 #if __IOS__ || MACCATALYST
 using PlatformView = MapKit.MKOverlayRenderer;
@@ -13,7 +12,7 @@ using PlatformView = System.Object;
 using PlatformView = System.Object;
 #endif
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Circle
 {
     public partial class CircleMapElementHandler : ICircleMapElementHandler
     {

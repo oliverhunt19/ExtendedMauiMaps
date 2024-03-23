@@ -15,11 +15,10 @@
 //#endif
 
 using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapElement;
 using ExtendedMauiMaps.IMauiMapElements;
 using Microsoft.Maui.Handlers;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement
 {
     public abstract partial class MapElementHandler<TVirtualView, TPlatformView> : ElementHandler<TVirtualView, TPlatformView>, IMapElementHandler
         where TPlatformView : class, IMauiMapElement

@@ -1,9 +1,8 @@
 ﻿using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapPin;
 using ExtendedMauiMaps.Platforms.iOS.MapElements;
 using Microsoft.Maui.Handlers;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapPin
 {
     public partial class MapPinHandler : ElementHandler<IMapPin, MauiMapMarker>
 	{

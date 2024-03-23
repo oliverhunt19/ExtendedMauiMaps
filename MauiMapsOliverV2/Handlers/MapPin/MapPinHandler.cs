@@ -1,16 +1,9 @@
-﻿#if __IOS__ || MACCATALYST
-using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapPin;
-using ExtendedMauiMaps.Platforms.iOS.MapElements;
+﻿using ExtendedMauiMaps.Core;
+#if __IOS__ || MACCATALYST
 using PlatformView = ExtendedMauiMaps.Platforms.iOS.MapElements.MauiMapMarker;
 #elif ANDROID
-using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapPin;
-using ExtendedMauiMaps.Platforms.Android.MapElements;
 using PlatformView = ExtendedMauiMaps.Platforms.Android.MapElements.MauiMapMarker;
 #elif WINDOWS
-using ExtendedMauiMaps.Core;
-using ExtendedMauiMaps.Handlers.MapPin;
 using PlatformView = System.Object;
 #elif TIZEN
 using PlatformView = System.Object;
@@ -18,7 +11,7 @@ using PlatformView = System.Object;
 using PlatformView = System.Object;
 #endif
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapPin
 {
     public partial class MapPinHandler : IMapPinHandler
 	{
