@@ -16,7 +16,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 
         protected readonly Func<GoogleMap> GetGoogleMap;
 
-        private readonly Mapper<TMapElement, TAndroid> _mapAndroidMapper;
+        private readonly IMapper<TMapElement, TAndroid> _mapAndroidMapper;
 
 
         protected ElementManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map)
@@ -24,7 +24,20 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             GetMauiContext = mauiContext;
             GetGoogleMap = map;
 
-            _mapAndroidMapper = new Mapper<TMapElement, TAndroid>();
+            _mapAndroidMapper = new ExtendedMapper<TMapElement, TAndroid>(MapElementHash, NativeElementHash);
+        }
+
+        private int MapElementHash(TMapElement mapElement)
+        {
+            int hash = mapElement.GetHashCode();
+            return hash;
+        }
+
+        private int NativeElementHash(TAndroid android)
+        {
+            string ID = GetNativeID(android);
+            int hash = ID.GetHashCode();
+            return hash;
         }
 
         protected bool ElementClicked(TAndroid android)
@@ -119,7 +132,9 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             }
             catch(Exception e)
             {
+#if DEBUG
                 Debug.WriteLine(e.ToString());
+#endif
             }
 
         }
