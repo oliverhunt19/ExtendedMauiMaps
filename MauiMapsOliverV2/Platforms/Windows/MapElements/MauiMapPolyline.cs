@@ -1,6 +1,6 @@
-﻿using MauiMapsOliverV2.IMauiMapElements;
+﻿using ExtendedMauiMaps.IMauiMapElements;
 
-namespace MauiMapsOliverV2.Platforms.iOS.MapElements
+namespace ExtendedMauiMaps.Platforms.Windows.MapElements
 {
     public class MauiMapPolyline : MauiStrokeMapElement<object>
     {

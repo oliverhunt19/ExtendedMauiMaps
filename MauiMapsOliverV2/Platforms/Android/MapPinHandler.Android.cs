@@ -1,5 +1,7 @@
 ﻿using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.Platforms.Android.MapElements;
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapPin;
+using ExtendedMauiMaps.Platforms.Android.MapElements;
 using Microsoft.Maui.Handlers;
 
 namespace Microsoft.Maui.Maps.Handlers

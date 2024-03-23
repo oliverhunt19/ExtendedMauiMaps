@@ -1,7 +1,6 @@
-﻿using Microsoft.Maui.Controls.Maps;
-using Microsoft.Maui.Maps;
+﻿using ExtendedMauiMaps.Core;
 
-namespace MauiMapsOliverV2Controls
+namespace ExtendedMauiMapsControl
 {
     public partial class StrokeMapElement : MapElement, IMapStrokeElement
     {
@@ -30,7 +29,7 @@ namespace MauiMapsOliverV2Controls
         /// </summary>
         public Color Stroke
         {
-            get => (Color)GetValue(StrokeProperty);
+            get => (Color) GetValue(StrokeProperty);
             set => SetValue(StrokeProperty, value);
         }
 
@@ -40,13 +39,13 @@ namespace MauiMapsOliverV2Controls
         /// </summary>
         public double StrokeThickness
         {
-            get => (double)GetValue(StrokeThicknessProperty);
+            get => (double) GetValue(StrokeThicknessProperty);
             set => SetValue(StrokeThicknessProperty, value);
         }
 
         public bool IsClickable
         {
-            get => (bool)GetValue(IsClickableProperty);
+            get => (bool) GetValue(IsClickableProperty);
             set
             {
                 SetValue(IsClickableProperty, value);

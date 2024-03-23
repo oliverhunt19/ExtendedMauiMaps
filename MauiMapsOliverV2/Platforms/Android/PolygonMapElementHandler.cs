@@ -1,5 +1,6 @@
-﻿using MauiMapsOliverV2.Core;
-using MauiMapsOliverV2.Platforms.Android.MapElements;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement.Filled;
+using ExtendedMauiMaps.Platforms.Android.MapElements;
 
 namespace Microsoft.Maui.Maps.Handlers
 {

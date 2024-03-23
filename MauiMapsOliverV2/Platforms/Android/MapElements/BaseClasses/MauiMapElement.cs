@@ -1,4 +1,5 @@
 ﻿using Android.Gms.Maps;
+using ExtendedMauiMaps.IMauiMapElements;
 
 namespace MauiMapsOliverV2.IMauiMapElements
 {

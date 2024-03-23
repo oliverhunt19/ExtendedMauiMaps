@@ -1,12 +1,13 @@
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.Map;
+using ExtendedMauiMaps.Primitives;
 using Microsoft.Maui.Controls.Internals;
-using Microsoft.Maui.Maps;
-using Microsoft.Maui.Maps.Handlers;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using IMap = Microsoft.Maui.Maps.IMap;
+using IMap = ExtendedMauiMaps.Core.IMap;
 
-namespace Microsoft.Maui.Controls.Maps
+namespace ExtendedMauiMapsControl
 {
     /// <summary>
     /// The Map control is a cross-platform view for displaying and annotating maps.
@@ -83,7 +84,7 @@ namespace Microsoft.Maui.Controls.Maps
 		/// Initializes a new instance of the <see cref="Map"/> class with a region.
 		/// </summary>
 		// <remarks>The selected region will default to Maui, Hawaii.</remarks>
-		public Map() : this(new MapSpan(new Devices.Sensors.Location(20.793062527, -156.336394697), 0.5, 0.5))
+		public Map() : this(new MapSpan(new Location(20.793062527, -156.336394697), 0.5, 0.5))
 		{
 			MoveToDeviceLocation();
         }

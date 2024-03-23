@@ -1,11 +1,11 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.IMauiMapElements;
+using ExtendedMauiMaps.IMauiMapElements;
 using Microsoft.Maui.Graphics.Platform;
 using ACircle = Android.Gms.Maps.Model.Circle;
 using Color = Android.Graphics.Color;
 
-namespace MauiMapsOliverV2.Platforms.Android.MapElements
+namespace ExtendedMauiMaps.Platforms.Android.MapElements
 {
     public class MauiMapCircle : MauiFilledMapElement<ACircle>
     {
@@ -33,7 +33,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _center = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Center = value;
             }
         }
@@ -45,7 +45,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _radius = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Radius = value;
             }
         }
@@ -57,7 +57,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _visible = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Visible = value;
             }
         }
@@ -69,7 +69,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _zIndex = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.ZIndex = value;
             }
         }
@@ -99,7 +99,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
             set
             {
-                _strokeColor= value;
+                _strokeColor = value;
                 if(Element is not null)
                 {
                     Element.StrokeColor = value.AsColor();
@@ -130,7 +130,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
             set
             {
-                _fillColor= value;
+                _fillColor = value;
                 if(ElementHasValue)
                 {
                     Element!.FillColor = value.AsColor();

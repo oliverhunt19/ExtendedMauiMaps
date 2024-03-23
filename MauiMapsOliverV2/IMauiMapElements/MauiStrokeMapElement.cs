@@ -1,4 +1,6 @@
-﻿namespace MauiMapsOliverV2.IMauiMapElements
+﻿using MauiMapsOliverV2.IMauiMapElements;
+
+namespace ExtendedMauiMaps.IMauiMapElements
 {
 
 

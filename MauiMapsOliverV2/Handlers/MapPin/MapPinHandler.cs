@@ -1,8 +1,16 @@
 ﻿#if __IOS__ || MACCATALYST
-using PlatformView = MauiMapsOliverV2.Platforms.iOS.MapElements.MauiMapMarker;
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapPin;
+using ExtendedMauiMaps.Platforms.iOS.MapElements;
+using PlatformView = ExtendedMauiMaps.Platforms.iOS.MapElements.MauiMapMarker;
 #elif ANDROID
-using PlatformView = MauiMapsOliverV2.Platforms.Android.MapElements.MauiMapMarker;
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapPin;
+using ExtendedMauiMaps.Platforms.Android.MapElements;
+using PlatformView = ExtendedMauiMaps.Platforms.Android.MapElements.MauiMapMarker;
 #elif WINDOWS
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapPin;
 using PlatformView = System.Object;
 #elif TIZEN
 using PlatformView = System.Object;

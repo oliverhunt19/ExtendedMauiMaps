@@ -1,6 +1,6 @@
-﻿using MauiMapsOliverV2.IMauiMapElements;
+﻿using ExtendedMauiMaps.IMauiMapElements;
 
-namespace MauiMapsOliverV2.Platforms.iOS.MapElements
+namespace ExtendedMauiMaps.Platforms.Windows.MapElements
 {
     public class MauiMapPolygon : MauiFilledMapElement<object>
     {
@@ -14,7 +14,7 @@ namespace MauiMapsOliverV2.Platforms.iOS.MapElements
         public override Color StrokeColor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public override double StrokeWidth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        
+
 
         protected override void RemoveFromMapInternal()
         {

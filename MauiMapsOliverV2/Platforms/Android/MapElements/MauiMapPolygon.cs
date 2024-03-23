@@ -1,11 +1,11 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.IMauiMapElements;
+using ExtendedMauiMaps.IMauiMapElements;
 using Microsoft.Maui.Graphics.Platform;
 using APolygon = Android.Gms.Maps.Model.Polygon;
 using Color = Android.Graphics.Color;
 
-namespace MauiMapsOliverV2.Platforms.Android.MapElements
+namespace ExtendedMauiMaps.Platforms.Android.MapElements
 {
     public class MauiMapPolygon : MauiFilledMapElement<APolygon>
     {
@@ -39,7 +39,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _visible = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Visible = value;
             }
         }
@@ -51,7 +51,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _zIndex = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.ZIndex = value;
             }
         }

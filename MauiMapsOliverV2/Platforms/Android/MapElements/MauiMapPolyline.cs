@@ -1,11 +1,11 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.IMauiMapElements;
+using ExtendedMauiMaps.IMauiMapElements;
 using Microsoft.Maui.Graphics.Platform;
 using APolyline = Android.Gms.Maps.Model.Polyline;
 using Color = Android.Graphics.Color;
 
-namespace MauiMapsOliverV2.Platforms.Android.MapElements
+namespace ExtendedMauiMaps.Platforms.Android.MapElements
 {
     public class MauiMapPolyline : MauiStrokeMapElement<APolyline>
     {
@@ -30,7 +30,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
                 {
                     Element.Points = value;
                 }
-                
+
             }
         }
 
@@ -41,7 +41,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _visible = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Visible = value;
             }
         }
@@ -53,7 +53,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _zIndex = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.ZIndex = value;
             }
         }
@@ -81,7 +81,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _strokeColour = value;
-                if (ElementHasValue)
+                if(ElementHasValue)
                 {
                     Element!.Color = _strokeColour.AsColor();
                 }
@@ -124,7 +124,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
                 {
                     options.Points.Add(i);
                 }
-                    
+
             }
 
             options.Visible(Visible);

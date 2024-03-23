@@ -1,5 +1,5 @@
-﻿using MauiMapsOliverV2.Core;
-using MauiMapsOliverV2.Handlers.MapElement;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement.Polygon;
 
 namespace Microsoft.Maui.Maps.Handlers
 {

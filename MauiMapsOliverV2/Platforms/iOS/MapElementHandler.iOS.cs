@@ -1,4 +1,5 @@
-﻿using MauiMapsOliverV2.IMauiMapElements;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.IMauiMapElements;
 using Microsoft.Maui.Handlers;
 
 namespace Microsoft.Maui.Maps.Handlers

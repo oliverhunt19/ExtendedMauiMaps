@@ -1,12 +1,15 @@
-﻿using MauiMapsOliverV2.Handlers.MapElement;
-using MauiMapsOliverV2.Core;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement.Polyline;
+
+
+
 
 
 #if __IOS__ || MACCATALYST
 using PlatformView = MapKit.IMKAnnotation;
 #elif ANDROID
 using Android.Gms.Maps;
-using PlatformView = MauiMapsOliverV2.Platforms.Android.MapElements.MauiMapPolyline;
+using PlatformView = ExtendedMauiMaps.Platforms.Android.MapElements.MauiMapPolyline;
 #elif WINDOWS
 using PlatformView = System.Object;
 #elif TIZEN

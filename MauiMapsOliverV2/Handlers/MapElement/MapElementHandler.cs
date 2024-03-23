@@ -14,7 +14,9 @@
 //using PlatformView = System.Object;
 //#endif
 
-using MauiMapsOliverV2.IMauiMapElements;
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement;
+using ExtendedMauiMaps.IMauiMapElements;
 using Microsoft.Maui.Handlers;
 
 namespace Microsoft.Maui.Maps.Handlers

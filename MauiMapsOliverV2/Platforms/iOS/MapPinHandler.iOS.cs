@@ -1,4 +1,6 @@
-﻿using MauiMapsOliverV2.Platforms.iOS.MapElements;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapPin;
+using ExtendedMauiMaps.Platforms.iOS.MapElements;
 using Microsoft.Maui.Handlers;
 
 namespace Microsoft.Maui.Maps.Handlers

@@ -1,4 +1,6 @@
-﻿using Microsoft.Maui.Handlers;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement;
+using Microsoft.Maui.Handlers;
 
 namespace Microsoft.Maui.Maps.Handlers
 {

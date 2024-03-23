@@ -1,4 +1,4 @@
-﻿namespace MauiMapsOliverV2.IMauiMapElements
+﻿namespace ExtendedMauiMaps.IMauiMapElements
 {
     public interface IMauiFilledMapElement : IMauiStokeMapElement
     {

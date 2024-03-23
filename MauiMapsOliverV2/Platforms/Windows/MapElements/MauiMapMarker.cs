@@ -1,9 +1,9 @@
 ﻿using MauiMapsOliverV2.IMauiMapElements;
 
-namespace MauiMapsOliverV2.Platforms.iOS.MapElements
+namespace ExtendedMauiMaps.Platforms.Windows.MapElements
 {
     public class MauiMapMarker : MauiMapElement<object>
-    { 
+    {
         public MauiMapMarker()
         {
         }

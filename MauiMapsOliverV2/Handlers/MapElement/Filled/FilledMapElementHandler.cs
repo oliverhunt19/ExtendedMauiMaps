@@ -1,7 +1,8 @@
-﻿using MauiMapsOliverV2.Handlers.MapElement;
-using MauiMapsOliverV2.IMauiMapElements;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement;
+using ExtendedMauiMaps.IMauiMapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Filled
 {
     public abstract partial class FilledMapElementHandler<TVirtualView, TPlatformView> : StrokeMapElementHandler<TVirtualView, TPlatformView>, IFilledMapElementHandler
         where TPlatformView : class, IMauiFilledMapElement

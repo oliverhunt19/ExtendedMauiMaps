@@ -1,13 +1,13 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.Platforms.Android.Manager;
+using ExtendedMauiMaps.Core;
 using APolyline = Android.Gms.Maps.Model.Polyline;
 
-namespace MauiMapsOliverV2.Core
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class PolylineManager : StrokeElementManager<APolyline, PolylineOptions, IPolylineMapElement>
     {
-        
+
 
         public PolylineManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<IPolylineMapElement>> geoPathElements) : base(mauiContext, map, geoPathElements)
         {
@@ -69,13 +69,13 @@ namespace MauiMapsOliverV2.Core
 
     }
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
 }

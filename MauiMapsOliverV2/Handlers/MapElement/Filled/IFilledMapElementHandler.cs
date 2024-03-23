@@ -1,4 +1,4 @@
-﻿namespace MauiMapsOliverV2.Handlers.MapElement
+﻿namespace ExtendedMauiMaps.Handlers.MapElement.Filled
 {
     public interface IFilledMapElementHandler : IStrokeMapElementHandler
     {

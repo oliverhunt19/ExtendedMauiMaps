@@ -1,4 +1,5 @@
-﻿using MauiMapsOliverV2.Handlers.MapElement;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement.Circle;
 
 #if __IOS__ || MACCATALYST
 using PlatformView = MapKit.MKOverlayRenderer;

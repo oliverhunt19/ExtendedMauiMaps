@@ -1,10 +1,10 @@
 ﻿using MapKit;
 using MauiMapsOliverV2.IMauiMapElements;
 
-namespace MauiMapsOliverV2.Platforms.iOS.MapElements
+namespace ExtendedMauiMaps.Platforms.iOS.MapElements
 {
     public class MauiMapMarker : MauiMapElement<MKPointAnnotation>
-    { 
+    {
         public MauiMapMarker()
         {
             _title = string.Empty;

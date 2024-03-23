@@ -2,7 +2,7 @@
 using Android.Gms.Maps.Model;
 using MauiMapsOliverV2.IMauiMapElements;
 
-namespace MauiMapsOliverV2.Platforms.Android.MapElements
+namespace ExtendedMauiMaps.Platforms.Android.MapElements
 {
     public class MauiMapMarker : MauiMapElement<Marker>
     {
@@ -13,7 +13,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             _position = new LatLng(0, 0);
         }
 
-        
+
 
         private string _title;
         public string Title
@@ -22,7 +22,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _title = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Title = value;
             }
         }
@@ -34,7 +34,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _snippet = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Snippet = value;
             }
         }
@@ -46,7 +46,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _position = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Position = value;
             }
         }
@@ -58,7 +58,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _alpha = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Alpha = value;
             }
         }
@@ -70,7 +70,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _draggable = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Draggable = value;
             }
         }
@@ -82,7 +82,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _visible = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Visible = value;
             }
         }
@@ -94,7 +94,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _zIndex = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.ZIndex = value;
             }
         }
@@ -106,7 +106,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             set
             {
                 _rotation = value;
-                if (Element is not null)
+                if(Element is not null)
                     Element.Rotation = value;
             }
         }

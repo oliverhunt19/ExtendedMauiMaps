@@ -1,5 +1,5 @@
 ﻿#if __IOS__ || MACCATALYST
-using PlatformView = Microsoft.Maui.Maps.Platform.MauiMKMapView;
+using PlatformView = ExtendedMauiMaps.Platforms.iOS.MauiMKMapView;
 #elif MONOANDROID || ANDROID
 using PlatformView = Android.Gms.Maps.MapView;
 #elif WINDOWS
@@ -11,8 +11,9 @@ using PlatformView = System.Object;
 #endif
 using Microsoft.Maui.Handlers;
 using System.Collections.Specialized;
+using IMap = ExtendedMauiMaps.Core.IMap;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.Map
 {
     public partial class MapHandler : IMapHandler
 	{

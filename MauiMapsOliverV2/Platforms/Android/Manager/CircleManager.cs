@@ -1,10 +1,10 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Microsoft.Maui.Maps;
+using ExtendedMauiMaps.Core;
 using System.ComponentModel;
 using ACircle = Android.Gms.Maps.Model.Circle;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class CircleManager : StrokeElementManager<ACircle, CircleOptions, ICircleMapElement>
     {
@@ -45,7 +45,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
         //    e.UpdateElement((x) => androideleent.FillColor = x, (mapElement.Fill as SolidPaint).Color.AsColor(), nameof(ICircleMapElement.Fill));
         //    e.UpdateElement((x) => androideleent.StrokeColor = x, (mapElement.Stroke as SolidPaint).Color.AsColor(), nameof(ICircleMapElement.Stroke));
         //    e.UpdateElement((x) => androideleent.StrokeWidth = x, (float)mapElement.StrokeThickness, nameof(ICircleMapElement.StrokeThickness));
-            
+
         //}
 
         private class CircleClicked : ClickedPolyline
@@ -68,9 +68,9 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
     public static class PropertyUpdater
     {
-        public static void UpdateElement<T>(this PropertyChangedEventArgs e , Action<T> val, T setVal, string PropertyName)
+        public static void UpdateElement<T>(this PropertyChangedEventArgs e, Action<T> val, T setVal, string PropertyName)
         {
-            if (e.PropertyName == PropertyName)
+            if(e.PropertyName == PropertyName)
             {
                 val.Invoke(setVal);
             }

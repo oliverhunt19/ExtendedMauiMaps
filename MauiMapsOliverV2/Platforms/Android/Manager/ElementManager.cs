@@ -1,10 +1,10 @@
 ﻿using Android.Gms.Maps;
+using ExtendedMauiMaps.Core;
 using MauiMapsOliverV2.IMauiMapElements;
-using Microsoft.Maui.Maps;
 using Microsoft.Maui.Platform;
 using System.Diagnostics;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal abstract class ElementManager<TAndroid, TAndroidOptions, TMapElement>
         where TAndroid : Java.Lang.Object
@@ -35,7 +35,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
         }
 
         //protected abstract TAndroid AddElement(TAndroidOptions options);
-        
+
 
 
         protected bool ElementClicked(TAndroid android)
@@ -85,7 +85,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             {
                 ClearElement(nativeElement);
             });
-            
+
         }
 
         public void RemoveElement(TMapElement element)
@@ -115,18 +115,18 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             try
             {
                 GoogleMap map = GetGoogleMap.Invoke();
-                if (map == null)
+                if(map == null)
                 {
                     return;
                 }
-                    
+
                 IMauiContext? mauiContext = GetMauiContext.Invoke();
-                if (mauiContext == null)
+                if(mauiContext == null)
                 {
                     return;
                 }
                 MauiMapElement<TAndroid>? options = mapElement.ToHandler(mauiContext)?.PlatformView as MauiMapElement<TAndroid>;
-                if (options != null)
+                if(options != null)
                 {
                     // This is done so that the addition is done on the main thread
                     MainThread.BeginInvokeOnMainThread(() =>
@@ -144,7 +144,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             {
                 Debug.WriteLine(e.ToString());
             }
-            
+
         }
 
         //public void ElementUpdated(TMapElement mapElement, PropertyChangedEventArgs e)
@@ -162,13 +162,13 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
         protected TAndroid? GetNativeFromElement(IMapElement polygon)
         {
-            if (_aPolylines != null && polygon.MapElementId is string)
+            if(_aPolylines != null && polygon.MapElementId is string)
             {
-                for (int i = 0; i < _aPolylines.Count; i++)
+                for(int i = 0; i < _aPolylines.Count; i++)
                 {
                     var native = _aPolylines[i];
                     string id = GetNativeID(native);
-                    if (id == (string)polygon.MapElementId)
+                    if(id == (string) polygon.MapElementId)
                     {
                         return native;
                     }
@@ -190,7 +190,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
         {
             string nativeID = GetNativeID(mapElement);
             int index = ElementIdsSameIndex(nativeID, mapElements);
-            if (mapElements.ElementAt(index) is TElement element)
+            if(mapElements.ElementAt(index) is TElement element)
             {
                 return element;
             }
@@ -201,12 +201,12 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
         private static int ElementIdsSameIndex<T>(string Id, IEnumerable<T> mapElements)
             where T : IMapElement
         {
-            for (int i = 0; i < mapElements.Count(); i++)
+            for(int i = 0; i < mapElements.Count(); i++)
             {
                 var pin = mapElements.ElementAt(i);
-                if (pin?.MapElementId is string markerId)
+                if(pin?.MapElementId is string markerId)
                 {
-                    if (markerId == Id)
+                    if(markerId == Id)
                     {
                         return i;
                     }

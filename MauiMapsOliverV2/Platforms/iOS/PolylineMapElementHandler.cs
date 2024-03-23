@@ -1,6 +1,6 @@
-﻿using MauiMapsOliverV2.Core;
-using MauiMapsOliverV2.Handlers.MapElement;
-using MauiMapsOliverV2.Platforms.iOS.MapElements;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement;
+using ExtendedMauiMaps.Platforms.iOS.MapElements;
 
 namespace Microsoft.Maui.Maps.Handlers
 {

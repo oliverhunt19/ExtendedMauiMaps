@@ -1,12 +1,12 @@
-﻿using MauiMapsOliverV2.IMauiMapElements;
-using Microsoft.Maui.Maps;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.IMauiMapElements;
 using Microsoft.Maui.Maps.Handlers;
 
-namespace MauiMapsOliverV2.Handlers.MapElement
+namespace ExtendedMauiMaps.Handlers.MapElement
 {
     public abstract partial class StrokeMapElementHandler<TVirtualView, TPlatformView> : MapElementHandler<TVirtualView, TPlatformView>, IStrokeMapElementHandler
         where TPlatformView : class, IMauiStokeMapElement
-        where TVirtualView : class , IMapStrokeElement
+        where TVirtualView : class, IMapStrokeElement
     {
 
         public static IPropertyMapper<IMapStrokeElement, StrokeMapElementHandler<TVirtualView, TPlatformView>> StrokeMapElementMapper = new PropertyMapper<IMapStrokeElement, StrokeMapElementHandler<TVirtualView, TPlatformView>>(Mapper)
@@ -16,7 +16,7 @@ namespace MauiMapsOliverV2.Handlers.MapElement
             [nameof(IMapStrokeElement.StrokeThickness)] = UpdateMapStrokeWidth
         };
 
-        
+
 
         public StrokeMapElementHandler() : base(StrokeMapElementMapper)
         {
@@ -30,7 +30,7 @@ namespace MauiMapsOliverV2.Handlers.MapElement
 
         private static void UpdateMapStroke(StrokeMapElementHandler<TVirtualView, TPlatformView> handler, IMapStrokeElement mapElement)
         {
-            handler.PlatformView.StrokeColor = mapElement.Stroke;   
+            handler.PlatformView.StrokeColor = mapElement.Stroke;
         }
 
         private static void UpdateMapStrokeWidth(StrokeMapElementHandler<TVirtualView, TPlatformView> handler, IMapStrokeElement element)

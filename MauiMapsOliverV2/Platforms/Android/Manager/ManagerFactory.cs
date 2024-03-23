@@ -1,8 +1,7 @@
 ﻿using Android.Gms.Maps;
-using MauiMapsOliverV2.Core;
-using Microsoft.Maui.Maps;
+using ExtendedMauiMaps.Core;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     public class ManagerFactory
     {

@@ -1,8 +1,8 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Microsoft.Maui.Maps;
+using ExtendedMauiMaps.Core;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class MarkerManager : ElementManager<Marker, MarkerOptions, IMapPin>
     {
@@ -22,7 +22,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             var marker = e.Marker;
             var pin = GetElementFromNative(marker, GetMapPins.Invoke());
 
-            if (pin == null)
+            if(pin == null)
             {
                 return;
             }
@@ -31,7 +31,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
             // SendInfoWindowClick() returns the value of PinClickedEventArgs.HideInfoWindow
             bool hideInfoWindow = pin.SendInfoWindowClick();
-            if (hideInfoWindow)
+            if(hideInfoWindow)
             {
                 marker.HideInfoWindow();
             }
@@ -39,17 +39,17 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
         public void Map_MarkerDrag(object? sender, GoogleMap.MarkerDragEventArgs e)
         {
-            
+
         }
 
         public void Map_MarkerDragEnd(object? sender, GoogleMap.MarkerDragEndEventArgs e)
         {
-            
+
         }
 
         public void Map_MarkerDragStart(object? sender, GoogleMap.MarkerDragStartEventArgs e)
         {
-            
+
         }
 
         //protected override Marker AddElement(MarkerOptions options)
@@ -89,8 +89,8 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
         //        }
         //    }
         //    , mapElement.ImageSource, nameof(IMapPin.ImageSource));
-            
-            
+
+
         //}
     }
 }

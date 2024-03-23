@@ -1,8 +1,8 @@
-﻿using MauiMapsOliverV2.IMauiMapElements;
+﻿using ExtendedMauiMaps.IMauiMapElements;
 
-namespace MauiMapsOliverV2.Platforms.iOS.MapElements
+namespace ExtendedMauiMaps.Platforms.Windows.MapElements
 {
-    public class MauiMapCircle : MauiFilledMapElement<object> 
+    public class MauiMapCircle : MauiFilledMapElement<object>
     {
         public override bool Visible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public override float ZIndex { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

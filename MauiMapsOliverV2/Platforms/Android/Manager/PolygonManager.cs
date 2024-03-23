@@ -1,9 +1,9 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.Core;
+using ExtendedMauiMaps.Core;
 using APolygon = Android.Gms.Maps.Model.Polygon;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class PolygonManager : StrokeElementManager<APolygon, PolygonOptions, IPolygonMapElement>
     {
