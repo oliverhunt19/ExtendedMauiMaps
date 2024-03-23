@@ -2,7 +2,6 @@
 using Android.Gms.Maps.Model;
 using Android.OS;
 using Java.Lang;
-using MauiMapsOliverV2.Core;
 using MauiMapsOliverV2.Platforms.Android.Manager;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Internals;
@@ -10,7 +9,6 @@ using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Maps.Platform;
 using System.Collections;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using Math = System.Math;
 
 namespace Microsoft.Maui.Maps.Handlers
@@ -480,10 +478,6 @@ namespace Microsoft.Maui.Maps.Handlers
         #region UpdateElements
 
 
-        public void UpdateMapElement(IMapElement element, PropertyChangedEventArgs e)
-        {
-			_managerFactory?.UpdateElement(element,e);
-        }
 
         #endregion
 

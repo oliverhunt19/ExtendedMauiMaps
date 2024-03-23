@@ -1,34 +1,24 @@
-﻿
-using MapKit;
+﻿using MauiMapsOliverV2.Handlers.MapElement;
+using MauiMapsOliverV2.Platforms.iOS.MapElements;
 
 namespace Microsoft.Maui.Maps.Handlers
 {
-    public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, MKCircleRenderer>
+    public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, MauiMapCircle>
     {
-        protected override MKCircleRenderer CreateElement()
+        protected override MauiMapCircle CreateElement()
         {
             throw new NotImplementedException();
         }
 
-        protected override MKCircleRenderer SetClickable(MKCircleRenderer platformView, bool clickable)
+
+        public static void UpdateCircleRadius(ICircleMapElementHandler handler, ICircleMapElement circleMapElement)
+        {
+
+        }
+
+        private static void UpdateCircleCentre(CircleMapElementHandler handler, ICircleMapElement element)
         {
             throw new NotImplementedException();
         }
-
-        protected override MKCircleRenderer SetFill(MKCircleRenderer platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override MKCircleRenderer SetStroke(MKCircleRenderer platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override MKCircleRenderer SetStrokeThickness(MKCircleRenderer circleOptions, float? width)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

@@ -1,42 +1,21 @@
 ﻿using Android.Gms.Maps.Model;
 using MauiMapsOliverV2.Core;
 using MauiMapsOliverV2.Handlers.MapElement;
-using Microsoft.Maui.Graphics.Platform;
+using MauiMapsOliverV2.Platforms.Android.MapElements;
 
 namespace Microsoft.Maui.Maps.Handlers
 {
-    public partial class PolylineMapElementHandler : StrokeMapElementHandler<IPolylineMapElement, PolylineOptions>
+    public partial class PolylineMapElementHandler : StrokeMapElementHandler<IPolylineMapElement, MauiMapPolyline>
     {
 
-        protected override PolylineOptions CreateElement()
+        protected override MauiMapPolyline CreateElement()
         {
-            IPolylineMapElement circleMap = VirtualView;
-            return new PolylineOptions().Add(circleMap.Geopath.Select(x=>new LatLng(x.Latitude, x.Longitude)).ToArray());
+            return new MauiMapPolyline();
         }
 
-        protected override PolylineOptions SetClickable(PolylineOptions platformView, bool clickable)
+        private static void UpdateGeopath(PolylineMapElementHandler handler, IPolylineMapElement element)
         {
-            return platformView.Clickable(clickable);
+            handler.PlatformView.Points = element.Geopath.Select(x=> new LatLng(x.Latitude,x.Longitude)).ToList();
         }
-
-        protected override PolylineOptions SetStroke(PolylineOptions platformView, SolidPaint? fill)
-        {
-            if (fill is null)
-            {
-                return platformView;
-            }
-            return platformView.InvokeColor(fill.Color.AsColor());
-        }
-
-        protected override PolylineOptions SetStrokeThickness(PolylineOptions circleOptions, float? width)
-        {
-            if (width is null)
-            {
-                return circleOptions;
-            }
-            circleOptions.InvokeWidth(width.Value);
-            return circleOptions;
-        }
-
     }
 }

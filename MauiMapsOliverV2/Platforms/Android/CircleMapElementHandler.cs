@@ -1,6 +1,4 @@
-﻿using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.Platforms.Android.MapElements;
-using Microsoft.Maui.Graphics.Platform;
+﻿using MauiMapsOliverV2.Platforms.Android.MapElements;
 using Microsoft.Maui.Maps.Platform;
 
 namespace Microsoft.Maui.Maps.Handlers
@@ -10,43 +8,17 @@ namespace Microsoft.Maui.Maps.Handlers
 
         protected override MauiMapCircle CreateElement()
         {
-            ICircleMapElement circleMap = VirtualView;
-            return new CircleOptions().InvokeCenter(circleMap.Center.ToALatLng())
-                .InvokeRadius(circleMap.Radius.Meters);//.InvokeStrokePattern(new List<PatternItem>());
+            return new MauiMapCircle();
         }
 
-        protected override MauiMapCircle SetClickable(MauiMapCircle platformView, bool clickable)
+        public static void UpdateCircleRadius(CircleMapElementHandler handler, ICircleMapElement circleMapElement)
         {
-            return platformView. (clickable);
+            handler.PlatformView.Radius = circleMapElement.Radius.Kilometers;
         }
 
-        protected override MauiMapCircle SetFill(MauiMapCircle circleOptions, SolidPaint? fill)
+        private static void UpdateCircleCentre(CircleMapElementHandler handler, ICircleMapElement element)
         {
-            if(fill is null)
-            {
-                return circleOptions;
-            }
-            circleOptions.FillColor = fill.Color.AsColor();
-            return circleOptions;
-        }
-
-
-        protected override CircleOptions SetStroke(CircleOptions platformView, SolidPaint? fill)
-        {
-            if (fill is null)
-            {
-                return platformView;
-            }
-            return platformView.InvokeStrokeColor(fill.Color.AsColor());
-        }
-
-        protected override CircleOptions SetStrokeThickness(CircleOptions circleOptions, float? width)
-        {
-            if (width is null)
-            {
-                return circleOptions;
-            }
-            return circleOptions.InvokeStrokeWidth(width.Value);
+            handler.PlatformView.Center = element.Center.ToALatLng();
         }
 
     }

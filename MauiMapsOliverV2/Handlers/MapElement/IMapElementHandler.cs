@@ -15,7 +15,7 @@ using PlatformView = System.Object;
 
 namespace Microsoft.Maui.Maps.Handlers
 {
-	public interface IMapElementHandler : IElementHandler
+    public interface IMapElementHandler : IElementHandler
 	{
 		//new IMapElement VirtualView { get; }
 		//new PlatformView PlatformView { get; }

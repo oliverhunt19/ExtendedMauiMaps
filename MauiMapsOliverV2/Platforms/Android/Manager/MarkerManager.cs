@@ -52,10 +52,10 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             
         }
 
-        protected override Marker AddElement(MarkerOptions options)
-        {
-            return GetGoogleMap.Invoke().AddMarker(options);
-        }
+        //protected override Marker AddElement(MarkerOptions options)
+        //{
+        //    return GetGoogleMap.Invoke().AddMarker(options);
+        //}
 
         protected override string GetNativeID(Marker nativeElement)
         {

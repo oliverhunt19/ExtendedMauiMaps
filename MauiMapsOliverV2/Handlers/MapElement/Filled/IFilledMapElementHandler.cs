@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MauiMapsOliverV2.Handlers.MapElement
+﻿namespace MauiMapsOliverV2.Handlers.MapElement
 {
-    public interface IFilledMapElementHandler : IElementHandler
+    public interface IFilledMapElementHandler : IStrokeMapElementHandler
     {
     }
 }

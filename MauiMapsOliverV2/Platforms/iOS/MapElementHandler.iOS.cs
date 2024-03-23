@@ -1,9 +1,10 @@
-﻿using Microsoft.Maui.Handlers;
+﻿using MauiMapsOliverV2.IMauiMapElements;
+using Microsoft.Maui.Handlers;
 
 namespace Microsoft.Maui.Maps.Handlers
 {
     public abstract partial class MapElementHandler<TVirtualView, TPlatformView> : ElementHandler<TVirtualView, TPlatformView>
-        where TPlatformView : class
+        where TPlatformView : class, IMauiMapElement
         where TVirtualView : class, IMapElement
     {
 		//protected override TPlatformView CreatePlatformElement()

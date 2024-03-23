@@ -17,10 +17,10 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             ShapeClicked(e.Circle);
         }
 
-        protected override ACircle AddElement(CircleOptions options)
-        {
-            return GetGoogleMap.Invoke().AddCircle(options);
-        }
+        //protected override ACircle AddElement(CircleOptions options)
+        //{
+        //    return GetGoogleMap.Invoke().AddCircle(options);
+        //}
 
         protected override void ClearElement(ACircle nativeElement)
         {

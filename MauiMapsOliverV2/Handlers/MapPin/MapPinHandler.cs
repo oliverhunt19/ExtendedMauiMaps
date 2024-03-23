@@ -1,5 +1,5 @@
 ﻿#if __IOS__ || MACCATALYST
-using PlatformView = MapKit.IMKAnnotation;
+using PlatformView = MauiMapsOliverV2.Platforms.iOS.MapElements.MauiMapMarker;
 #elif ANDROID
 using PlatformView = MauiMapsOliverV2.Platforms.Android.MapElements.MauiMapMarker;
 #elif WINDOWS

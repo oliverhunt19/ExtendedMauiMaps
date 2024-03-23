@@ -1,32 +1,18 @@
 ﻿using MauiMapsOliverV2.Core;
+using MauiMapsOliverV2.Platforms.iOS.MapElements;
 
 namespace Microsoft.Maui.Maps.Handlers
 {
-    public partial class PolygonMapElementHandler : FilledMapElementHandler<IPolygonMapElement, object>
+    public partial class PolygonMapElementHandler : FilledMapElementHandler<IPolygonMapElement, MauiMapPolygon>
     {
-        protected override object CreateElement()
+        protected override MauiMapPolygon CreateElement()
         {
             throw new NotImplementedException();
         }
 
-        protected override object SetClickable(object platformView, bool clickable)
+        private static void UpdateGeopath(PolygonMapElementHandler handler, IPolygonMapElement element)
         {
-            throw new NotImplementedException();
-        }
-
-        protected override object SetFill(object platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override object SetStroke(object platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override object SetStrokeThickness(object circleOptions, float? width)
-        {
-            throw new NotImplementedException();
+            //handler.PlatformView.Points = element.Geopath.Select(x => new Android.Gms.Maps.Model.LatLng(x.Latitude, x.Longitude)).ToList();
         }
     }
 }

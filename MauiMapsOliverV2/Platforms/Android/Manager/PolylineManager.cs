@@ -28,10 +28,10 @@ namespace MauiMapsOliverV2.Core
             return nativeElement.Id;
         }
 
-        protected override APolyline AddElement(PolylineOptions options)
-        {
-            return GetGoogleMap.Invoke().AddPolyline(options);
-        }
+        //protected override APolyline AddElement(PolylineOptions options)
+        //{
+        //    return GetGoogleMap.Invoke().AddPolyline(options);
+        //}
 
         protected override void ClearElement(APolyline nativeElement)
         {

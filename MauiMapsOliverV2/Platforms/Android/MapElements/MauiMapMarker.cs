@@ -1,5 +1,6 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using MauiMapsOliverV2.IMauiMapElements;
 
 namespace MauiMapsOliverV2.Platforms.Android.MapElements
 {
@@ -7,6 +8,9 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
     {
         public MauiMapMarker()
         {
+            _title = "";
+            _snippet = "";
+            _position = new LatLng(0, 0);
         }
 
         
@@ -154,7 +158,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
         }
 
-        public override string Id => Element?.Id;
+        public override string Id => Element?.Id ?? "";
 
         public bool IsInfoWindowShown => Element?.IsInfoWindowShown ?? false;
         public void ShowInfoWindow() => Element?.ShowInfoWindow();

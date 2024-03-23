@@ -1,11 +1,13 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using MauiMapsOliverV2.IMauiMapElements;
+using Microsoft.Maui.Graphics.Platform;
 using ACircle = Android.Gms.Maps.Model.Circle;
 using Color = Android.Graphics.Color;
 
 namespace MauiMapsOliverV2.Platforms.Android.MapElements
 {
-    public class MauiMapCircle : MauiStrokeMapElement<ACircle>
+    public class MauiMapCircle : MauiFilledMapElement<ACircle>
     {
         public MauiMapCircle()
         {
@@ -16,15 +18,15 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             var options = new CircleOptions();
             options.InvokeCenter(Center);
             options.InvokeRadius(Radius);
-            options.InvokeStrokeWidth(StrokeWidth);
-            options.InvokeStrokeColor(StrokeColor);
-            options.InvokeFillColor(FillColor);
+            options.InvokeStrokeWidth((float) StrokeWidth);
+            options.InvokeStrokeColor(StrokeColor.AsColor());
+            options.InvokeFillColor(FillColour.AsColor());
             options.Visible(Visible);
             options.InvokeZIndex(ZIndex);
             return map.AddCircle(options);
         }
 
-        private LatLng _center;
+        private LatLng _center = new LatLng(0,0);
         public LatLng Center
         {
             get => Element?.Center ?? _center;
@@ -45,42 +47,6 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
                 _radius = value;
                 if (Element is not null)
                     Element.Radius = value;
-            }
-        }
-
-        private float _strokeWidth;
-        public float StrokeWidth
-        {
-            get => Element?.StrokeWidth ?? _strokeWidth;
-            set
-            {
-                _strokeWidth = value;
-                if (Element is not null)
-                    Element.StrokeWidth = value;
-            }
-        }
-
-        private Color _strokeColor;
-        public Color StrokeColor
-        {
-            get => Element is not null ? new Color(Element.StrokeColor) : _strokeColor;
-            set
-            {
-                _strokeColor = value;
-                if (Element is not null)
-                    Element.StrokeColor = value;
-            }
-        }
-
-        private Color _fillColor;
-        public Color FillColor
-        {
-            get => Element is not null ? new Color(Element.FillColor) : _fillColor;
-            set
-            {
-                _fillColor = value;
-                if (Element is not null)
-                    Element.FillColor = value;
             }
         }
 
@@ -108,7 +74,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
         }
 
-        public override string Id => Element?.Id;
+        public override string Id => Element?.Id ?? "";
 
         private bool _clickable;
         public override bool Clickable
@@ -120,6 +86,54 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
                 if(ElementHasValue)
                 {
                     Element!.Clickable = value;
+                }
+            }
+        }
+
+        private Microsoft.Maui.Graphics.Color _strokeColor = Colors.Black;
+        public override Microsoft.Maui.Graphics.Color StrokeColor
+        {
+            get
+            {
+                return Element is not null ? new Color(Element.StrokeColor).AsColor() : _strokeColor;
+            }
+            set
+            {
+                _strokeColor= value;
+                if(Element is not null)
+                {
+                    Element.StrokeColor = value.AsColor();
+                }
+            }
+        }
+
+        private double _strokeWidth;
+        public override double StrokeWidth
+        {
+            get => Element?.StrokeWidth ?? _strokeWidth;
+            set
+            {
+                _strokeWidth = value;
+                if(ElementHasValue)
+                {
+                    Element!.StrokeWidth = (float) value;
+                }
+            }
+        }
+
+        private Microsoft.Maui.Graphics.Color _fillColor = Colors.Transparent;
+        public override Microsoft.Maui.Graphics.Color FillColour
+        {
+            get
+            {
+                return Element is not null ? new Color(Element.FillColor).AsColor() : _fillColor;
+            }
+            set
+            {
+                _fillColor= value;
+                if(ElementHasValue)
+                {
+                    Element!.FillColor = value.AsColor();
                 }
             }
         }

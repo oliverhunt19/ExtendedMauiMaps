@@ -1,5 +1,5 @@
 ﻿using Android.Gms.Maps;
-using MauiMapsOliverV2.Platforms.Android.MapElements;
+using MauiMapsOliverV2.IMauiMapElements;
 using Microsoft.Maui.Maps;
 using Microsoft.Maui.Platform;
 using System.Diagnostics;
@@ -34,7 +34,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             mapElements = new List<TMapElement>();
         }
 
-        protected abstract TAndroid AddElement(TAndroidOptions options);
+        //protected abstract TAndroid AddElement(TAndroidOptions options);
         
 
 
@@ -103,31 +103,41 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
         public void AddElement(TMapElement element)
         {
-            AddPolyline(element);
+            AddMapElement(element);
         }
 
-        private void AddPolyline(TMapElement polyline)
+        /// <summary>
+        /// This adds the map element to the map
+        /// </summary>
+        /// <param name="mapElement"></param>
+        private void AddMapElement(TMapElement mapElement)
         {
             try
             {
                 GoogleMap map = GetGoogleMap.Invoke();
                 if (map == null)
+                {
                     return;
+                }
+                    
                 IMauiContext? mauiContext = GetMauiContext.Invoke();
-                var options = polyline.ToHandler(mauiContext!)?.PlatformView as MauiMapElement<TAndroid>;
+                if (mauiContext == null)
+                {
+                    return;
+                }
+                MauiMapElement<TAndroid>? options = mapElement.ToHandler(mauiContext)?.PlatformView as MauiMapElement<TAndroid>;
                 if (options != null)
                 {
                     // This is done so that the addition is done on the main thread
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        var nativePolyline = options.AddToMap(map);
+                        TAndroid nativeElement = options.AddToMap(map);
 
-                        polyline.MapElementId = GetNativeID(nativePolyline);
+                        mapElement.MapElementId = GetNativeID(nativeElement);
 
-                        _aPolylines.Add(nativePolyline);
-                        mapElements.Add(polyline);
+                        _aPolylines.Add(nativeElement);
+                        mapElements.Add(mapElement);
                     });
-                    
                 }
             }
             catch(Exception e)
@@ -167,7 +177,13 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             return default;
         }
 
+        /// <summary>
+        /// Gets the Id fron the Android Native Element
+        /// </summary>
+        /// <param name="nativeElement"></param>
+        /// <returns></returns>
         protected abstract string GetNativeID(TAndroid nativeElement);
+
 
         protected TElement? GetElementFromNative<TElement>(TAndroid mapElement, IEnumerable<TElement> mapElements)
             where TElement : IMapElement
@@ -180,6 +196,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             }
             return default;
         }
+
 
         private static int ElementIdsSameIndex<T>(string Id, IEnumerable<T> mapElements)
             where T : IMapElement

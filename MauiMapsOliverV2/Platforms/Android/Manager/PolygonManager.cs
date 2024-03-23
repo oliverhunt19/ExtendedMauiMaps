@@ -16,10 +16,10 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             ShapeClicked(e.Polygon);
         }
 
-        protected override APolygon AddElement(PolygonOptions options)
-        {
-            return GetGoogleMap.Invoke().AddPolygon(options);
-        }
+        //protected override APolygon AddElement(PolygonOptions options)
+        //{
+        //    return GetGoogleMap.Invoke().AddPolygon(options);
+        //}
 
         protected override void ClearElement(APolygon nativeElement)
         {

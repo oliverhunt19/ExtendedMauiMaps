@@ -1,50 +1,51 @@
-﻿using MauiMapsOliverV2.Platforms.Android.MapElements;
+﻿using MauiMapsOliverV2.IMauiMapElements;
 using Microsoft.Maui.Maps;
 using Microsoft.Maui.Maps.Handlers;
 
 namespace MauiMapsOliverV2.Handlers.MapElement
 {
-    public abstract partial class StrokeMapElementHandler<TVirtualView, TPlatformView> : MapElementHandler<TVirtualView, TPlatformView>, IFilledMapElementHandler
+    public abstract partial class StrokeMapElementHandler<TVirtualView, TPlatformView> : MapElementHandler<TVirtualView, TPlatformView>, IStrokeMapElementHandler
         where TPlatformView : class, IMauiStokeMapElement
         where TVirtualView : class , IMapStrokeElement
     {
 
-        public static void MapStroke(IMapElementHandler handler, IMapStrokeElement mapElement)
+        public static IPropertyMapper<IMapStrokeElement, StrokeMapElementHandler<TVirtualView, TPlatformView>> StrokeMapElementMapper = new PropertyMapper<IMapStrokeElement, StrokeMapElementHandler<TVirtualView, TPlatformView>>(Mapper)
+        {
+            [nameof(IMapStrokeElement.Stroke)] = UpdateMapStroke,
+            [nameof(IMapStrokeElement.IsClickable)] = UpdateMapClickable,
+            [nameof(IMapStrokeElement.StrokeThickness)] = UpdateMapStrokeWidth
+        };
+
+        
+
+        public StrokeMapElementHandler() : base(StrokeMapElementMapper)
+        {
+
+        }
+
+        public StrokeMapElementHandler(IPropertyMapper? mapper = null)
+        : base(mapper ?? StrokeMapElementMapper)
+        {
+        }
+
+        private static void UpdateMapStroke(StrokeMapElementHandler<TVirtualView, TPlatformView> handler, IMapStrokeElement mapElement)
         {
             if(mapElement.Stroke is not SolidPaint solidPaint)
+            {
                 return;
-            if(handler.PlatformView is TPlatformView platformView)
-            {
-                if(handler is StrokeMapElementHandler<TVirtualView, TPlatformView> mapElementHandler)
-                {
-                    mapElementHandler.SetStroke(platformView, solidPaint);
-                }
             }
+            handler.PlatformView.StrokeColor = solidPaint.Color;   
         }
 
-        public static void MapStrokeThickness(IMapElementHandler handler, IMapStrokeElement mapElement)
+        private static void UpdateMapStrokeWidth(StrokeMapElementHandler<TVirtualView, TPlatformView> handler, IMapStrokeElement element)
         {
-            if(handler.PlatformView is TPlatformView platformView)
-            {
-                if(handler is StrokeMapElementHandler<TVirtualView, TPlatformView> mapElementHandler)
-                {
-                    mapElementHandler.SetStrokeThickness(platformView, (float?) mapElement.StrokeThickness);
-                }
-            }
+            handler.PlatformView.StrokeWidth = element.StrokeThickness;
         }
 
-        protected override TPlatformView CreatePlatformElement()
+        private static void UpdateMapClickable(StrokeMapElementHandler<TVirtualView, TPlatformView> handler, IMapStrokeElement element)
         {
-            TPlatformView element = base.CreatePlatformElement();
-            SetStrokeThickness(element, (float?) VirtualView.StrokeThickness);
-            SetClickable(element, VirtualView.IsClickable);
-            return SetStroke(element, VirtualView.Stroke as SolidPaint);
+            handler.PlatformView.Clickable = element.IsClickable;
         }
 
-        protected abstract TPlatformView SetStroke(TPlatformView platformView, SolidPaint? fill);
-
-        protected abstract TPlatformView SetStrokeThickness(TPlatformView circleOptions, float? width);
-
-        protected abstract TPlatformView SetClickable(TPlatformView platformView, bool clickable);
     }
 }

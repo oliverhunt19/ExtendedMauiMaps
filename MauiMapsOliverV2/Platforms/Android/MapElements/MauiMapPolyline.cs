@@ -1,29 +1,33 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using MauiMapsOliverV2.IMauiMapElements;
+using Microsoft.Maui.Graphics.Platform;
 using APolyline = Android.Gms.Maps.Model.Polyline;
 using Color = Android.Graphics.Color;
 
 namespace MauiMapsOliverV2.Platforms.Android.MapElements
 {
-    public class MauiMapPolyline : MauiMapElement<APolyline>
+    public class MauiMapPolyline : MauiStrokeMapElement<APolyline>
     {
         public MauiMapPolyline()
         {
+            _points = new List<LatLng>();
         }
+
 
         
 
-        private Color _color;
-        public Color Color
-        {
-            get => Element is not null ? new Color(Element.Color) : _color;
-            set
-            {
-                _color = value;
-                if (Element is not null)
-                    Element.Color = value;
-            }
-        }
+        //private Color _color;
+        //public Color Color
+        //{
+        //    get => Element is not null ? new Color(Element.Color) : _color;
+        //    set
+        //    {
+        //        _color = value;
+        //        if (Element is not null)
+        //            Element.Color = value;
+        //    }
+        //}
 
         private float _width;
         public float Width
@@ -37,22 +41,21 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
         }
 
-        private ObservableRangeCollection<LatLng> _points;
+        private IList<LatLng> _points;
         public IList<LatLng> Points
         {
             get
             {
-                if (_points is null)
+                return Element?.Points ?? _points;
+            }
+            set
+            {
+                _points = value;
+                if(Element is not null)
                 {
-                    _points = new ObservableRangeCollection<LatLng>();
-                    _points.CollectionChanged += (sender, args) =>
-                    {
-                        if (Element is not null)
-                            Element.Points = new List<LatLng>(_points);
-                    };
+                    Element.Points = value;
                 }
-
-                return _points;
+                
             }
         }
 
@@ -80,18 +83,60 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
         }
 
-        public override string Id => Element?.Id;
+        public override string Id => Element?.Id ?? "";
 
-        public int ReplacePointsWith(IEnumerable<LatLng> points)
+        private bool _clickable;
+        public override bool Clickable
         {
-            ((ObservableRangeCollection<LatLng>)Points).ReplaceRange(points);
-            return Points.Count;
+            get => Element?.Clickable ?? _clickable;
+            set
+            {
+                _clickable = value;
+                if(ElementHasValue)
+                {
+                    Element!.Clickable = _clickable;
+                }
+            }
         }
+
+        private Microsoft.Maui.Graphics.Color _strokeColour = Colors.Black;
+        public override Microsoft.Maui.Graphics.Color StrokeColor
+        {
+            get => ElementHasValue ? new Color(Element!.Color).AsColor() : _strokeColour;
+            set
+            {
+                _strokeColour = value;
+                if (ElementHasValue)
+                {
+                    Element!.Color = _strokeColour.AsColor();
+                }
+            }
+        }
+
+        private double _strokeWidth;
+        public override double StrokeWidth
+        {
+            get => Element?.Width ?? _strokeWidth;
+            set
+            {
+                _strokeWidth = value;
+                if(ElementHasValue)
+                {
+                    Element!.Width = (float) _strokeWidth;
+                }
+            }
+        }
+
+        //public int ReplacePointsWith(IEnumerable<LatLng> points)
+        //{
+        //    ((ObservableRangeCollection<LatLng>)Points).ReplaceRange(points);
+        //    return Points.Count;
+        //}
 
         protected override APolyline AddToMapsInternal(GoogleMap map)
         {
             var options = new PolylineOptions();
-            options.InvokeColor(Color);
+            options.InvokeColor(StrokeColor.AsColor());
             options.InvokeWidth(Width);
             // Will throw an exception when added to the map if Points is empty
             if(!Points.Any())
@@ -101,10 +146,15 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             else
             {
                 foreach(var i in Points)
+                {
                     options.Points.Add(i);
+                }
+                    
             }
+
             options.Visible(Visible);
             options.InvokeZIndex(ZIndex);
+            options.Clickable(Clickable);
             return map.AddPolyline(options);
         }
 

@@ -28,7 +28,6 @@ namespace Microsoft.Maui.Maps.Handlers
 #if MONOANDROID || ANDROID
 		GoogleMap? Map { get; }
 #endif
-        void UpdateMapElement(IMapElement element, PropertyChangedEventArgs e);
 
 		void ElementsCollectionChanged(NotifyCollectionChangedEventArgs e);
 	}

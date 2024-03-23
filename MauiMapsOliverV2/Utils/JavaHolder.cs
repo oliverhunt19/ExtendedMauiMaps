@@ -8,6 +8,7 @@ namespace MauiMapsOliverV2.Utils
 {
     //https://gist.github.com/Cheesebaron/9876783
     public class JavaHolder<T> : PlatformView
+        where T : class
     {
         public T Value { get; }
 
@@ -20,6 +21,7 @@ namespace MauiMapsOliverV2.Utils
     public static class ObjectExtensions
     {
         public static TObject? ToNetObject<TObject>(this PlatformView value)
+            where TObject : class
         {
             if(value == null)
                 return default;
@@ -33,6 +35,7 @@ namespace MauiMapsOliverV2.Utils
         }
 
         public static PlatformView ToJavaObject<TObject>(this TObject value)
+            where TObject : class
         {
             if(Equals(value, default(TObject)) && !typeof(TObject).IsValueType)
                 return null;
