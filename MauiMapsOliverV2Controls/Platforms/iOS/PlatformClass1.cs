@@ -1,4 +1,4 @@
-﻿namespace MauiMapsOliverV2Controls
+﻿namespace ExtendedMauiMapsControl.Platforms.iOS
 {
     // All the code in this file is only included on iOS.
     public class PlatformClass1

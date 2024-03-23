@@ -1,5 +1,5 @@
 ﻿#if __IOS__ || MACCATALYST
-using PlatformView = Microsoft.Maui.Maps.Platform.MauiMKMapView;
+using PlatformView = ExtendedMauiMaps.Platforms.iOS.MauiMKMapView;
 #elif MONOANDROID || ANDROID
 using PlatformView = Android.Gms.Maps.MapView;
 #elif WINDOWS
@@ -11,8 +11,9 @@ using PlatformView = System.Object;
 #endif
 using Microsoft.Maui.Handlers;
 using System.Collections.Specialized;
+using IMap = ExtendedMauiMaps.Core.IMap;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.Map
 {
     public partial class MapHandler : IMapHandler
 	{
@@ -29,7 +30,7 @@ namespace Microsoft.Maui.Maps.Handlers
 		public static CommandMapper<IMap, IMapHandler> CommandMapper = new(ViewCommandMapper)
 		{
 			[nameof(IMap.MoveToRegion)] = MapMoveToRegion,
-			[nameof(IMapHandler.UpdateMapElement)] = MapUpdateMapElement,
+			//[nameof(IMapHandler.UpdateMapElement)] = MapUpdateMapElement,
 			[nameof(IMapHandler.ElementsCollectionChanged)] = MapElementsCollectionChanged
 
         };
@@ -50,13 +51,13 @@ namespace Microsoft.Maui.Maps.Handlers
 
 		PlatformView IMapHandler.PlatformView => PlatformView;
 
-		private static void MapUpdateMapElement(IMapHandler handler, IMap map, object? arg)
-		{
-			if (arg is not MapElementHandlerUpdateProperty args)
-				return;
+		//private static void MapUpdateMapElement(IMapHandler handler, IMap map, object? arg)
+		//{
+		//	if (arg is not MapElementHandlerUpdateProperty args)
+		//		return;
 
-			handler.UpdateMapElement(args.MapElement, args.e);
-		}
+		//	handler.UpdateMapElement(args.MapElement, args.e);
+		//}
 
         private static void MapElementsCollectionChanged(IMapHandler handler, IMap map, object? arg3)
         {

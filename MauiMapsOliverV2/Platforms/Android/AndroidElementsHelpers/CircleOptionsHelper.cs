@@ -1,4 +1,4 @@
-﻿namespace MauiMapsOliverV2.Platforms.Android.AndroidElementsHelpers
+﻿namespace ExtendedMauiMaps.Platforms.Android.AndroidElementsHelpers
 {
     public class CircleOptionsHelper
     {

@@ -1,8 +1,8 @@
-﻿namespace MauiMapsOliverV2Controls
+﻿namespace ExtendedMauiMapsControl
 {
     public class MapElementClickedEventArgs : EventArgs
     {
-        public bool Handled {  get; set; }
+        public bool Handled { get; set; }
 
         public object Context { get; }
 

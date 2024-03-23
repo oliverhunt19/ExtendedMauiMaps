@@ -1,7 +1,8 @@
-﻿#if __IOS__ || MACCATALYST
-using PlatformView = MapKit.IMKAnnotation;
+﻿using ExtendedMauiMaps.Core;
+#if __IOS__ || MACCATALYST
+using PlatformView = ExtendedMauiMaps.Platforms.iOS.MapElements.MauiMapMarker;
 #elif ANDROID
-using PlatformView = Android.Gms.Maps.Model.MarkerOptions;
+using PlatformView = ExtendedMauiMaps.Platforms.Android.MapElements.MauiMapMarker;
 #elif WINDOWS
 using PlatformView = System.Object;
 #elif TIZEN
@@ -10,7 +11,7 @@ using PlatformView = System.Object;
 using PlatformView = System.Object;
 #endif
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapPin
 {
     public partial class MapPinHandler : IMapPinHandler
 	{
@@ -19,6 +20,13 @@ namespace Microsoft.Maui.Maps.Handlers
 			[nameof(IMapPin.Location)] = MapLocation,
 			[nameof(IMapPin.Label)] = MapLabel,
 			[nameof(IMapPin.Address)] = MapAddress,
+			[nameof(IMapPin.AnchorV)] = MapAnchor,
+			[nameof(IMapPin.AnchorU)] = MapAnchor,
+			[nameof(IMapPin.InfoWindowAnchorU)] = SetRotation,
+			[nameof(IMapPin.InfoWindowAnchorV)] = SetRotation,
+			[nameof(IMapPin.PinRotation)] = SetRotation,
+			[nameof(IMapPin.Flatten)] = SetRotation,
+			
 		};
 
 		public MapPinHandler() : base(Mapper)

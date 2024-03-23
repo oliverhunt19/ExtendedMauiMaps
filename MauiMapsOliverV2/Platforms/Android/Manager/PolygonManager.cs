@@ -1,11 +1,9 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.Core;
-using Microsoft.Maui.Graphics.Platform;
-using System.ComponentModel;
+using ExtendedMauiMaps.Core;
 using APolygon = Android.Gms.Maps.Model.Polygon;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class PolygonManager : StrokeElementManager<APolygon, PolygonOptions, IPolygonMapElement>
     {
@@ -18,10 +16,10 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             ShapeClicked(e.Polygon);
         }
 
-        protected override APolygon AddElement(PolygonOptions options)
-        {
-            return GetGoogleMap.Invoke().AddPolygon(options);
-        }
+        //protected override APolygon AddElement(PolygonOptions options)
+        //{
+        //    return GetGoogleMap.Invoke().AddPolygon(options);
+        //}
 
         protected override void ClearElement(APolygon nativeElement)
         {
@@ -38,14 +36,14 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             return nativeElement.Id;
         }
 
-        protected override void UpdateAndroidElement(IPolygonMapElement mapElement, APolygon androideleent, PropertyChangedEventArgs e)
-        {
-            e.UpdateElement((x) => androideleent.Clickable = x, mapElement.IsClickable, nameof(IPolygonMapElement.IsClickable));
-            e.UpdateElement((x) => androideleent.FillColor = x, (mapElement.Fill as SolidPaint).Color.AsColor(), nameof(IPolygonMapElement.Fill));
-            e.UpdateElement((x) => androideleent.StrokeColor = x, (mapElement.Stroke as SolidPaint).Color.AsColor(), nameof(IPolygonMapElement.Stroke));
-            e.UpdateElement((x) => androideleent.StrokeWidth = x, (float)mapElement.StrokeThickness, nameof(IPolygonMapElement.StrokeThickness));
-            //androideleent.Tag = (Java.Lang.Object) new object();
-        }
+        //protected override void UpdateAndroidElement(IPolygonMapElement mapElement, APolygon androideleent, PropertyChangedEventArgs e)
+        //{
+        //    e.UpdateElement((x) => androideleent.Clickable = x, mapElement.IsClickable, nameof(IPolygonMapElement.IsClickable));
+        //    e.UpdateElement((x) => androideleent.FillColor = x, (mapElement.Fill as SolidPaint).Color.AsColor(), nameof(IPolygonMapElement.Fill));
+        //    e.UpdateElement((x) => androideleent.StrokeColor = x, (mapElement.Stroke as SolidPaint).Color.AsColor(), nameof(IPolygonMapElement.Stroke));
+        //    e.UpdateElement((x) => androideleent.StrokeWidth = x, (float)mapElement.StrokeThickness, nameof(IPolygonMapElement.StrokeThickness));
+        //    //androideleent.Tag = (Java.Lang.Object) new object();
+        //}
 
         private class PolygonClicked : ClickedPolyline
         {

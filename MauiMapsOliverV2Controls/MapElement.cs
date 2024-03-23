@@ -1,14 +1,14 @@
-using MauiMapsOliverV2Controls;
+using ExtendedMauiMaps.Core;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace Microsoft.Maui.Controls.Maps
+namespace ExtendedMauiMapsControl
 {
     /// <summary>
     /// Represents an element which is visually drawn on the <see cref="Map"/> control.
     /// </summary>
-    public partial class MapElement : Element
-	{
+    public partial class MapElement : Element, IMapElement
+    {
 
         public static readonly BindableProperty MapElementClickedCommandProperty = BindableProperty.Create(nameof(MapElementClickedCommand), typeof(ICommand), typeof(MapElement));
 
@@ -27,7 +27,7 @@ namespace Microsoft.Maui.Controls.Maps
 
         public ICommand? MapElementClickedCommand
         {
-            get => (ICommand?)GetValue(MapElementClickedCommandProperty);
+            get => (ICommand?) GetValue(MapElementClickedCommandProperty);
             set => SetValue(MapElementClickedCommandProperty, value);
         }
 
@@ -48,7 +48,7 @@ namespace Microsoft.Maui.Controls.Maps
         {
             var args = new MapElementClickedEventArgs(BindingContext);
             MapElementClicked?.Invoke(this, args);
-            if (MapElementClickedCommandParameter is not null)
+            if(MapElementClickedCommandParameter is not null)
             {
                 MapElementClickedCommand?.Execute(MapElementClickedCommandParameter);
             }
@@ -56,7 +56,7 @@ namespace Microsoft.Maui.Controls.Maps
             {
                 MapElementClickedCommand?.Execute(args);
             }
-            
+
             return args.Handled;
         }
     }

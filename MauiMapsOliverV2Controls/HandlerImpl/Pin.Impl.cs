@@ -1,6 +1,6 @@
-﻿using Microsoft.Maui.Maps;
+﻿using ExtendedMauiMaps.Core;
 
-namespace Microsoft.Maui.Controls.Maps
+namespace ExtendedMauiMapsControl
 {
     public partial class Pin : IMapPin
     {

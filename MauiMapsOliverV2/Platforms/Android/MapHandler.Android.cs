@@ -1,19 +1,20 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.OS;
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Platforms.Android;
+using ExtendedMauiMaps.Platforms.Android.Manager;
+using ExtendedMauiMaps.Primitives;
 using Java.Lang;
-using MauiMapsOliverV2.Core;
-using MauiMapsOliverV2.Platforms.Android.Manager;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Internals;
 using Microsoft.Maui.Handlers;
-using Microsoft.Maui.Maps.Platform;
 using System.Collections;
 using System.Collections.Specialized;
-using System.ComponentModel;
+using IMap = ExtendedMauiMaps.Core.IMap;
 using Math = System.Math;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.Map
 {
     public partial class MapHandler : ViewHandler<IMap, MapView>
 	{
@@ -370,7 +371,7 @@ namespace Microsoft.Maui.Maps.Handlers
 			LatLng lr = projection.FromScreenLocation(new global::Android.Graphics.Point(width, height));
 			double dlat = Math.Max(Math.Abs(ul.Latitude - lr.Latitude), Math.Abs(ur.Latitude - ll.Latitude));
 			double dlong = Math.Max(Math.Abs(ul.Longitude - lr.Longitude), Math.Abs(ur.Longitude - ll.Longitude));
-			VirtualView.VisibleRegion = new MapSpan(new Devices.Sensors.Location(pos.Latitude, pos.Longitude), dlat, dlong);
+			VirtualView.VisibleRegion = new MapSpan(new Location(pos.Latitude, pos.Longitude), dlat, dlong);
 		}
 
 		void MapViewLayoutChange(object? sender, Android.Views.View.LayoutChangeEventArgs e)
@@ -450,7 +451,7 @@ namespace Microsoft.Maui.Maps.Handlers
 		//}
 
 		void OnMapClick(object? sender, GoogleMap.MapClickEventArgs e) =>
-			VirtualView.Clicked(new Devices.Sensors.Location(e.Point.Latitude, e.Point.Longitude));
+			VirtualView.Clicked(new Location(e.Point.Latitude, e.Point.Longitude));
 
         #endregion
 
@@ -480,10 +481,6 @@ namespace Microsoft.Maui.Maps.Handlers
         #region UpdateElements
 
 
-        public void UpdateMapElement(IMapElement element, PropertyChangedEventArgs e)
-        {
-			_managerFactory?.UpdateElement(element,e);
-        }
 
         #endregion
 

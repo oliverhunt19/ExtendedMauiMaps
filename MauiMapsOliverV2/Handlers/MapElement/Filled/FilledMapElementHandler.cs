@@ -1,42 +1,33 @@
-﻿using MauiMapsOliverV2.Handlers.MapElement;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement;
+using ExtendedMauiMaps.IMauiMapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Filled
 {
     public abstract partial class FilledMapElementHandler<TVirtualView, TPlatformView> : StrokeMapElementHandler<TVirtualView, TPlatformView>, IFilledMapElementHandler
-        where TPlatformView : class
+        where TPlatformView : class, IMauiFilledMapElement
         where TVirtualView : class, IFilledMapElement
     {
 
-        public FilledMapElementHandler()// : base(Mapper)
+        public static IPropertyMapper<IFilledMapElement, FilledMapElementHandler<TVirtualView, TPlatformView>> FilledMapMapper = new PropertyMapper<IFilledMapElement, FilledMapElementHandler<TVirtualView, TPlatformView>>(StrokeMapElementMapper)
+        {
+            [nameof(IFilledMapElement.FillColour)] = UpdateMapFill
+        };
+
+        private static void UpdateMapFill(FilledMapElementHandler<TVirtualView, TPlatformView> handler, IFilledMapElement element)
+        {
+            handler.PlatformView.FillColour = element.FillColour;
+        }
+
+        public FilledMapElementHandler() : base(FilledMapMapper)
         {
 
         }
 
         public FilledMapElementHandler(IPropertyMapper? mapper = null)
-        //: base(mapper ?? Mapper)
+        : base(mapper ?? Mapper)
         {
         }
 
-        protected override TPlatformView CreatePlatformElement()
-        {
-            TPlatformView platformView = base.CreatePlatformElement();
-            return SetFill(platformView, VirtualView.Fill as SolidPaint);
-        }
-
-        protected abstract TPlatformView SetFill(TPlatformView platformView, SolidPaint? fill);
-
-        public static void MapFill(IFilledMapElementHandler handler, IFilledMapElement mapElement)
-        {
-            if(mapElement.Fill is not SolidPaint solidPaintFill)
-                return;
-
-            if(handler is FilledMapElementHandler<TVirtualView, TPlatformView> mapElementHandler)
-            {
-                if(handler.PlatformView is TPlatformView platformView)
-                {
-                    mapElementHandler.SetFill(platformView, solidPaintFill);
-                }
-            }
-        }
     }
 }

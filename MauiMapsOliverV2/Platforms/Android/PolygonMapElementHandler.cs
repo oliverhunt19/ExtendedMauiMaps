@@ -1,42 +1,21 @@
-﻿using Android.Gms.Maps.Model;
-using MauiMapsOliverV2.Core;
-using Microsoft.Maui.Graphics.Platform;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement.Filled;
+using ExtendedMauiMaps.Platforms.Android.MapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Polygon
 {
-    public partial class PolygonMapElementHandler : FilledMapElementHandler<IPolygonMapElement, PolygonOptions>
+    public partial class PolygonMapElementHandler : FilledMapElementHandler<IPolygonMapElement, MauiMapPolygon>
     {
-        protected override PolygonOptions CreateElement()
+        protected override MauiMapPolygon CreateElement()
         {
-            return new PolygonOptions().Add(VirtualView.Geopath.Select(x=>new LatLng(x.Latitude, x.Longitude)).ToArray());
+            return new MauiMapPolygon();
         }
 
-        protected override PolygonOptions SetClickable(PolygonOptions platformView, bool clickable)
+        private static void UpdateGeopath(PolygonMapElementHandler handler, IPolygonMapElement element)
         {
-            return platformView.Clickable(clickable);
+            handler.PlatformView.Points = element.Geopath.Select(x=>new Android.Gms.Maps.Model.LatLng(x.Latitude,x.Longitude)).ToList();
         }
 
-        protected override PolygonOptions SetFill(PolygonOptions platformView, SolidPaint? fill)
-        {
-            if (fill is null)
-            {
-                return platformView;
-            }
-            return platformView.InvokeFillColor(fill.Color.AsColor());
-        }
 
-        protected override PolygonOptions SetStroke(PolygonOptions platformView, SolidPaint? fill)
-        {
-            if (fill is null)
-            {
-                return platformView;
-            }
-            return platformView.InvokeStrokeColor(fill.Color.AsColor());
-        }
-
-        protected override PolygonOptions SetStrokeThickness(PolygonOptions circleOptions, float? width)
-        {
-            return circleOptions.InvokeStrokeWidth((float) width);
-        }
     }
 }

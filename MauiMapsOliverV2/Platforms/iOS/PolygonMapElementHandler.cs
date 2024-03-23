@@ -1,33 +1,20 @@
-﻿using MapKit;
-using MauiMapsOliverV2.Core;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement.Filled;
+using ExtendedMauiMaps.Platforms.iOS.MapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Polygon
 {
-    public partial class PolygonMapElementHandler : FilledMapElementHandler<IPolygonMapElement, MKPolygon>
+    public partial class PolygonMapElementHandler : FilledMapElementHandler<IPolygonMapElement, MauiMapPolygon>
     {
-        protected override MKPolygon CreateElement()
+        protected override MauiMapPolygon CreateElement()
         {
             throw new NotImplementedException();
         }
 
-        protected override MKPolygon SetClickable(MKPolygon platformView, bool clickable)
+        private static void UpdateGeopath(PolygonMapElementHandler handler, IPolygonMapElement element)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
-        protected override MKPolygon SetFill(MKPolygon platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override MKPolygon SetStroke(MKPolygon platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override MKPolygon SetStrokeThickness(MKPolygon circleOptions, float? width)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

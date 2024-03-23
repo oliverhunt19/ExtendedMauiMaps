@@ -1,4 +1,4 @@
-﻿using MauiMapsOliverV2.Handlers.MapElement;
+﻿using ExtendedMauiMaps.Core;
 
 #if __IOS__ || MACCATALYST
 using PlatformView = MapKit.MKOverlayRenderer;
@@ -12,41 +12,27 @@ using PlatformView = System.Object;
 using PlatformView = System.Object;
 #endif
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Circle
 {
     public partial class CircleMapElementHandler : ICircleMapElementHandler
     {
 
-        public static IPropertyMapper<IMapStrokeElement, IMapElementHandler> Mapper = new PropertyMapper<IMapStrokeElement, IMapElementHandler>(ElementMapper)
+        public static IPropertyMapper<ICircleMapElement, CircleMapElementHandler> CircleMapper = new PropertyMapper<ICircleMapElement, CircleMapElementHandler>(FilledMapMapper)
         {
-            [nameof(IMapStrokeElement.Stroke)] = MapStroke,
-            [nameof(IMapStrokeElement.StrokeThickness)] = MapStrokeThickness,
-            //[nameof(IFilledMapElement.Fill)] = MapFill,
-#if MONOANDROID
-			["Geopath"] = MapGeopath,
-			[nameof(ICircleMapElement.Radius)] = MapRadius,
-			[nameof(ICircleMapElement.Center)] = MapCenter,
-#endif
+            [nameof(ICircleMapElement.Center)] = UpdateCircleCentre,
+            [nameof(ICircleMapElement.Radius)] = UpdateCircleRadius,
         };
 
-        public CircleMapElementHandler() : base(Mapper)
+        
+
+        public CircleMapElementHandler() : base(CircleMapper)
         {
 
         }
 
         public CircleMapElementHandler(IPropertyMapper? mapper = null)
-        : base(mapper ?? Mapper)
+        : base(mapper ?? CircleMapper)
         {
         }
-
-        
-
-
-
-
-
-        //IMapElement IMapElementHandler.VirtualView => VirtualView;
-
-        //PlatformView IMapElementHandler.PlatformView => PlatformView;
     }
 }

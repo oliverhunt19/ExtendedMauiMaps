@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Maui.Devices.Sensors;
 
-namespace Microsoft.Maui.Maps
+namespace ExtendedMauiMaps.Core
 {
-	public interface IGeoPathMapElement : IMapStrokeElement
-	{
-		IReadOnlyList<Location> Geopath { get; }
-	}
+    public interface IGeoPathMapElement : IMapStrokeElement
+    {
+        IReadOnlyList<Location> Geopath { get; }
+    }
 }

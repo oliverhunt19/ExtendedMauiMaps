@@ -1,29 +1,18 @@
-﻿using MapKit;
-using MauiMapsOliverV2.Core;
-using MauiMapsOliverV2.Handlers.MapElement;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Platforms.iOS.MapElements;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement.Polyline
 {
-    public partial class PolylineMapElementHandler : StrokeMapElementHandler<IPolylineMapElement, MKPolyline>
+    public partial class PolylineMapElementHandler : StrokeMapElementHandler<IPolylineMapElement, MauiMapPolyline>
     {
-        protected override MKPolyline CreateElement()
+        protected override MauiMapPolyline CreateElement()
         {
             throw new NotImplementedException();
         }
 
-        protected override MKPolyline SetClickable(MKPolyline platformView, bool clickable)
+        private static void UpdateGeopath(PolylineMapElementHandler handler, IPolylineMapElement element)
         {
-            throw new NotImplementedException();
-        }
-
-        protected override MKPolyline SetStroke(MKPolyline platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override MKPolyline SetStrokeThickness(MKPolyline circleOptions, float? width)
-        {
-            throw new NotImplementedException();
+            //handler.PlatformView.
         }
 
     }

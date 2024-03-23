@@ -1,13 +1,12 @@
-﻿using Microsoft.Maui.Maps.Handlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace MauiMapsOliverV2.Handlers.MapElement
+using ExtendedMauiMaps.Handlers.MapElement.Filled;
+
+namespace ExtendedMauiMaps.Handlers.MapElement.Polygon
 {
     public interface IPolygonMapElementHandler : IFilledMapElementHandler
     {
+        //new IPolygonMapElement VirtualView { get; }
+        //new PlatformView PlatformView { get; }
     }
 }

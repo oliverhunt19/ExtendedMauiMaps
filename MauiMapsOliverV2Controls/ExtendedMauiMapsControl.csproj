@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\MauiMapsOliverV2\MauiMapsOliverV2.csproj" />
+	  <ProjectReference Include="..\MauiMapsOliverV2\ExtendedMauiMaps.csproj" />
 	</ItemGroup>
 
 </Project>
