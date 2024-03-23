@@ -1,6 +1,9 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
-using Microsoft.Maui.Maps.Handlers;
 using ExtendedMauiMaps.Handlers.Map;
+using ExtendedMauiMaps.Handlers.MapPin;
+using ExtendedMauiMaps.Handlers.MapElement.Circle;
+using ExtendedMauiMaps.Handlers.MapElement.Polygon;
+using ExtendedMauiMaps.Handlers.MapElement.Polyline;
 
 
 
