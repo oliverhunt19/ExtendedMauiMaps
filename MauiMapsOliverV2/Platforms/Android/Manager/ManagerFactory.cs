@@ -1,9 +1,7 @@
 ﻿using Android.Gms.Maps;
-using MauiMapsOliverV2.Core;
-using Microsoft.Maui.Maps;
-using System.ComponentModel;
+using ExtendedMauiMaps.Core;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     public class ManagerFactory
     {
@@ -126,32 +124,32 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             }
         }
 
-        public void UpdateElement(IMapElement mapElement, PropertyChangedEventArgs e)
-        {
-            switch(mapElement)
-            {
-                case ICircleMapElement circle:
-                {
-                    circleManager?.ElementUpdated(circle,e);
-                    break;
-                }
-                case IPolylineMapElement circle:
-                {
-                    polylineManager?.ElementUpdated(circle, e);
-                    break;
-                }
-                case IPolygonMapElement circle:
-                {
-                    polygonManager?.ElementUpdated(circle, e);
-                    break;
-                }
-                case IMapPin circle:
-                {
-                    markerManager?.ElementUpdated(circle, e);
-                    break;
-                }
-            }
-        }
+        //public void UpdateElement(IMapElement mapElement, PropertyChangedEventArgs e)
+        //{
+        //    switch(mapElement)
+        //    {
+        //        case ICircleMapElement circle:
+        //        {
+        //            circleManager?.ElementUpdated(circle,e);
+        //            break;
+        //        }
+        //        case IPolylineMapElement circle:
+        //        {
+        //            polylineManager?.ElementUpdated(circle, e);
+        //            break;
+        //        }
+        //        case IPolygonMapElement circle:
+        //        {
+        //            polygonManager?.ElementUpdated(circle, e);
+        //            break;
+        //        }
+        //        case IMapPin circle:
+        //        {
+        //            markerManager?.ElementUpdated(circle, e);
+        //            break;
+        //        }
+        //    }
+        //}
 
         public void UnSubscribe(GoogleMap Map)
         {

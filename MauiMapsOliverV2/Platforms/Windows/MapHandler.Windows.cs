@@ -1,9 +1,11 @@
-﻿using Microsoft.Maui.Handlers;
+﻿using ExtendedMauiMaps.Core;
+using Microsoft.Maui.Handlers;
 using Microsoft.UI.Xaml;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using IMap = ExtendedMauiMaps.Core.IMap;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.Map
 {
     public partial class MapHandler : ViewHandler<IMap, FrameworkElement>
 	{

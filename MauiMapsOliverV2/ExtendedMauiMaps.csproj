@@ -30,7 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\FuelPricesAPI\Submodules\GeneralUtils\GeneralUtils\GeneralUtils.csproj" />
+	  <ProjectReference Include="..\..\GeneralUtils\GeneralUtils\GeneralUtils.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

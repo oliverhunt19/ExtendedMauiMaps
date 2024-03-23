@@ -1,8 +1,7 @@
-using MauiMapsOliverV2Controls;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace Microsoft.Maui.Controls.Maps
+namespace ExtendedMauiMapsControl
 {
     /// <summary>
     /// Represents a pin on the <see cref="Map"/> control.

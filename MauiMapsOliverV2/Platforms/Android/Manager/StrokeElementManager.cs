@@ -1,8 +1,8 @@
 ﻿using Android.Gms.Maps;
+using ExtendedMauiMaps.Core;
 using Microsoft.Maui.Graphics.Platform;
-using Microsoft.Maui.Maps;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal abstract class StrokeElementManager<TAndroid, TAndroidOptions, TMapElement> : ElementManager<TAndroid, TAndroidOptions, TMapElement>
         where TAndroid : Java.Lang.Object
@@ -20,7 +20,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             bool handled = ElementClicked(nativeElement);
 
             clickedPolyline?.Unclicked();
-            if (!handled)
+            if(!handled)
             {
                 clickedPolyline = GetClickedPolyline(nativeElement);
                 clickedPolyline.Clicked();

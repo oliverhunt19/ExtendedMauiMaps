@@ -13,11 +13,11 @@ using PlatformView = System.Object;
 using PlatformView = System.Object;
 #endif
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.MapElement
 {
-	public interface IMapElementHandler : IElementHandler
-	{
-		//new IMapElement VirtualView { get; }
-		//new PlatformView PlatformView { get; }
-	}
+    public interface IMapElementHandler : IElementHandler
+    {
+        //new IMapElement VirtualView { get; }
+        //new PlatformView PlatformView { get; }
+    }
 }

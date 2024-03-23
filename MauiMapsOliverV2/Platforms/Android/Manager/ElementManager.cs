@@ -1,11 +1,11 @@
 ﻿using Android.Gms.Maps;
+using ExtendedMauiMaps.Core;
 using GeneralUtils;
-using Microsoft.Maui.Maps;
+using MauiMapsOliverV2.IMauiMapElements;
 using Microsoft.Maui.Platform;
-using System.ComponentModel;
 using System.Diagnostics;
 
-namespace MauiMapsOliverV2.Platforms.Android.Manager
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal abstract class ElementManager<TAndroid, TAndroidOptions, TMapElement>
         where TAndroid : Java.Lang.Object
@@ -39,8 +39,8 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             MapAndroidMapper = new Mapper<TMapElement, TAndroid>();
         }
 
-        protected abstract TAndroid AddElement(TAndroidOptions options);
-        
+        //protected abstract TAndroid AddElement(TAndroidOptions options);
+
 
 
         protected bool ElementClicked(TAndroid android)
@@ -92,7 +92,7 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             {
                 ClearElement(nativeElement);
             });
-            
+
         }
 
         public void RemoveElement(TMapElement element)
@@ -111,53 +111,60 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
 
         public void AddElement(TMapElement element)
         {
-            AddPolyline(element);
+            AddMapElement(element);
         }
 
-        private void AddPolyline(TMapElement polyline)
+        /// <summary>
+        /// This adds the map element to the map
+        /// </summary>
+        /// <param name="mapElement"></param>
+        private void AddMapElement(TMapElement mapElement)
         {
             try
             {
                 GoogleMap map = GetGoogleMap.Invoke();
-                if (map == null)
+                if(map == null)
+                {
                     return;
+                }
+
                 IMauiContext? mauiContext = GetMauiContext.Invoke();
-                var options = polyline.ToHandler(mauiContext!)?.PlatformView as TAndroidOptions;
-                if (options != null)
+                if(mauiContext == null)
+                {
+                    return;
+                }
+                MauiMapElement<TAndroid>? options = mapElement.ToHandler(mauiContext)?.PlatformView as MauiMapElement<TAndroid>;
+                if(options != null)
                 {
                     // This is done so that the addition is done on the main thread
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        var nativePolyline = AddElement(options);
+                        TAndroid nativeElement = options.AddToMap(map);
 
-                        polyline.MapElementId = GetNativeID(nativePolyline);
-
-                        MapAndroidMapper.Add(polyline, nativePolyline);
-                        //_aPolylines.Add(nativePolyline);
-                        //mapElements.Add(polyline);
+                        mapElement.MapElementId = GetNativeID(nativeElement);
+                        MapAndroidMapper.Add(mapElement, nativeElement);
                     });
-                    
                 }
             }
             catch(Exception e)
             {
                 Debug.WriteLine(e.ToString());
             }
-            
+
         }
 
-        public void ElementUpdated(TMapElement mapElement, PropertyChangedEventArgs e)
-        {
-            TAndroid? android = GetNativeFromElement(mapElement);
-            if (android is null)
-            {
-                return;
-            }
+        //public void ElementUpdated(TMapElement mapElement, PropertyChangedEventArgs e)
+        //{
+        //    TAndroid? android = GetNativeFromElement(mapElement);
+        //    if (android is null)
+        //    {
+        //        return;
+        //    }
 
-            UpdateAndroidElement(mapElement,android,e);
-        }
+        //    UpdateAndroidElement(mapElement,android,e);
+        //}
 
-        protected abstract void UpdateAndroidElement(TMapElement mapElement, TAndroid androideleent, PropertyChangedEventArgs e);
+        //protected abstract void UpdateAndroidElement(TMapElement mapElement, TAndroid androideleent, PropertyChangedEventArgs e);
 
         protected TAndroid? GetNativeFromElement(TMapElement polygon)
         {
@@ -178,29 +185,36 @@ namespace MauiMapsOliverV2.Platforms.Android.Manager
             //return default;
         }
 
+        /// <summary>
+        /// Gets the Id fron the Android Native Element
+        /// </summary>
+        /// <param name="nativeElement"></param>
+        /// <returns></returns>
         protected abstract string GetNativeID(TAndroid nativeElement);
+
 
         protected TElement? GetElementFromNative<TElement>(TAndroid mapElement, IEnumerable<TElement> mapElements)
             where TElement : IMapElement
         {
             string nativeID = GetNativeID(mapElement);
             int index = ElementIdsSameIndex(nativeID, mapElements);
-            if (mapElements.ElementAt(index) is TElement element)
+            if(mapElements.ElementAt(index) is TElement element)
             {
                 return element;
             }
             return default;
         }
 
+
         private static int ElementIdsSameIndex<T>(string Id, IEnumerable<T> mapElements)
             where T : IMapElement
         {
-            for (int i = 0; i < mapElements.Count(); i++)
+            for(int i = 0; i < mapElements.Count(); i++)
             {
                 var pin = mapElements.ElementAt(i);
-                if (pin?.MapElementId is string markerId)
+                if(pin?.MapElementId is string markerId)
                 {
-                    if (markerId == Id)
+                    if(markerId == Id)
                     {
                         return i;
                     }

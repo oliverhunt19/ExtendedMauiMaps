@@ -1,30 +1,25 @@
-﻿namespace Microsoft.Maui.Maps.Handlers
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.MapElement.Filled;
+using ExtendedMauiMaps.Platforms.Windows.MapElements;
+
+namespace ExtendedMauiMaps.Handlers.MapElement.Circle
 {
-    public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, object>
+    public partial class CircleMapElementHandler : FilledMapElementHandler<ICircleMapElement, MauiMapCircle>
     {
-        protected override object CreateElement()
+        protected override MauiMapCircle CreateElement()
         {
             throw new NotImplementedException();
         }
 
-        protected override object SetClickable(object platformView, bool clickable)
+        public static void UpdateCircleRadius(ICircleMapElementHandler handler, ICircleMapElement circleMapElement)
+        {
+
+        }
+
+        private static void UpdateCircleCentre(CircleMapElementHandler handler, ICircleMapElement element)
         {
             throw new NotImplementedException();
         }
 
-        protected override object SetFill(object platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override object SetStroke(object platformView, SolidPaint? fill)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override object SetStrokeThickness(object circleOptions, float? width)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

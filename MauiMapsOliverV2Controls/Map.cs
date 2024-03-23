@@ -1,13 +1,13 @@
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Handlers.Map;
+using ExtendedMauiMaps.Primitives;
 using Microsoft.Maui.Controls.Internals;
-using Microsoft.Maui.Maps;
-using Microsoft.Maui.Maps.Handlers;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using IMap = Microsoft.Maui.Maps.IMap;
+using IMap = ExtendedMauiMaps.Core.IMap;
 
-namespace Microsoft.Maui.Controls.Maps
+namespace ExtendedMauiMapsControl
 {
     /// <summary>
     /// The Map control is a cross-platform view for displaying and annotating maps.
@@ -84,7 +84,7 @@ namespace Microsoft.Maui.Controls.Maps
 		/// Initializes a new instance of the <see cref="Map"/> class with a region.
 		/// </summary>
 		// <remarks>The selected region will default to Maui, Hawaii.</remarks>
-		public Map() : this(new MapSpan(new Devices.Sensors.Location(20.793062527, -156.336394697), 0.5, 0.5))
+		public Map() : this(new MapSpan(new Location(20.793062527, -156.336394697), 0.5, 0.5))
 		{
 			MoveToDeviceLocation();
         }
@@ -354,32 +354,9 @@ namespace Microsoft.Maui.Controls.Maps
 
         #endregion
 
-        void MapElementPropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            if(sender is MapElement mapElement)
-            {
-                var args = new MapElementHandlerUpdateProperty(e, mapElement);
-                Handler?.Invoke(nameof(IMapHandler.UpdateMapElement), args);
-            }
-        }
 
         void MapElementsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
-            if(e.NewItems is not null)
-            {
-                foreach(MapElement item in e.NewItems)
-                {
-                    item.PropertyChanged += MapElementPropertyChanged;
-                }
-            }
-
-            if(e.OldItems is not null)
-            {
-                foreach(MapElement item in e.OldItems)
-                {
-                    item.PropertyChanged -= MapElementPropertyChanged;
-                }
-            }
 
             Handler?.Invoke(nameof(IMapHandler.ElementsCollectionChanged), e);
         }

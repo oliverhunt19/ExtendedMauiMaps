@@ -1,16 +1,13 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Hardware.Camera2;
-using MauiMapsOliverV2.Platforms.Android.Manager;
-using Microsoft.Maui.Graphics.Platform;
-using System.ComponentModel;
+using ExtendedMauiMaps.Core;
 using APolyline = Android.Gms.Maps.Model.Polyline;
 
-namespace MauiMapsOliverV2.Core
+namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class PolylineManager : StrokeElementManager<APolyline, PolylineOptions, IPolylineMapElement>
     {
-        
+
 
         public PolylineManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<IPolylineMapElement>> geoPathElements) : base(mauiContext, map, geoPathElements)
         {
@@ -31,10 +28,10 @@ namespace MauiMapsOliverV2.Core
             return nativeElement.Id;
         }
 
-        protected override APolyline AddElement(PolylineOptions options)
-        {
-            return GetGoogleMap.Invoke().AddPolyline(options);
-        }
+        //protected override APolyline AddElement(PolylineOptions options)
+        //{
+        //    return GetGoogleMap.Invoke().AddPolyline(options);
+        //}
 
         protected override void ClearElement(APolyline nativeElement)
         {
@@ -46,12 +43,12 @@ namespace MauiMapsOliverV2.Core
             return new PolygonClicked(element);
         }
 
-        protected override void UpdateAndroidElement(IPolylineMapElement mapElement, APolyline androideleent, PropertyChangedEventArgs e)
-        {
-            e.UpdateElement((x) => androideleent.Clickable = x, mapElement.IsClickable, nameof(IPolylineMapElement.IsClickable));
-            e.UpdateElement((x) => androideleent.Color = x, (mapElement.Stroke as SolidPaint).Color.AsColor(), nameof(IPolylineMapElement.Stroke));
-            e.UpdateElement((x) => androideleent.Width = x, (float) mapElement.StrokeThickness, nameof(IPolylineMapElement.StrokeThickness));
-        }
+        //protected override void UpdateAndroidElement(IPolylineMapElement mapElement, APolyline androideleent, PropertyChangedEventArgs e)
+        //{
+        //    e.UpdateElement((x) => androideleent.Clickable = x, mapElement.IsClickable, nameof(IPolylineMapElement.IsClickable));
+        //    e.UpdateElement((x) => androideleent.Color = x, (mapElement.Stroke as SolidPaint).Color.AsColor(), nameof(IPolylineMapElement.Stroke));
+        //    e.UpdateElement((x) => androideleent.Width = x, (float) mapElement.StrokeThickness, nameof(IPolylineMapElement.StrokeThickness));
+        //}
 
         private class PolygonClicked : ClickedPolyline
         {
@@ -72,13 +69,13 @@ namespace MauiMapsOliverV2.Core
 
     }
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
 }

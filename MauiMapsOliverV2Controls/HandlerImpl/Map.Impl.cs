@@ -1,7 +1,7 @@
-﻿using Microsoft.Maui.Maps;
-using IMap = Microsoft.Maui.Maps.IMap;
+﻿using ExtendedMauiMaps.Primitives;
+using IMap = ExtendedMauiMaps.Core.IMap;
 
-namespace Microsoft.Maui.Controls.Maps
+namespace ExtendedMauiMapsControl
 {
     public partial class Map : IMap//, IEnumerable<IMapPin>
 	{

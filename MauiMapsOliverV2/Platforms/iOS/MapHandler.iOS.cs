@@ -1,13 +1,15 @@
 ﻿using CoreLocation;
+using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Platforms.iOS;
+using ExtendedMauiMaps.Primitives;
 using MapKit;
-using MauiMapsOliverV2.Core;
 using Microsoft.Maui.Handlers;
-using Microsoft.Maui.Maps.Platform;
 using System.Collections;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using IMap = ExtendedMauiMaps.Core.IMap;
 
-namespace Microsoft.Maui.Maps.Handlers
+namespace ExtendedMauiMaps.Handlers.Map
 {
 
     public partial class MapHandler : ViewHandler<IMap, MauiMKMapView>
