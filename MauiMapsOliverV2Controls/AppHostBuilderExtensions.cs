@@ -6,10 +6,6 @@ using ExtendedMauiMaps.Handlers.MapElement.Polygon;
 using ExtendedMauiMaps.Handlers.MapElement.Polyline;
 
 
-
-
-
-
 #if ANDROID
 using Android.Gms.Common;
 using Android.Gms.Maps;
