@@ -6,10 +6,10 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 {
     internal class MarkerManager : ElementManager<Marker, MarkerOptions, IMapPin>
     {
-        private Func<IEnumerable<IMapPin>> GetMapPins;
-        public MarkerManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<IMapPin>> mapPins) : base(mauiContext, map, mapPins)
+
+        public MarkerManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map) : base(mauiContext, map)
         {
-            GetMapPins = mapPins;
+
         }
 
         public void OnMarkerClick(object? sender, GoogleMap.MarkerClickEventArgs e)
@@ -20,7 +20,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
         public void OnInfoWindowClick(object? sender, GoogleMap.InfoWindowClickEventArgs e)
         {
             var marker = e.Marker;
-            var pin = GetElementFromNative(marker, GetMapPins.Invoke());
+            var pin = GetMapElementFromNative(marker);
 
             if(pin == null)
             {

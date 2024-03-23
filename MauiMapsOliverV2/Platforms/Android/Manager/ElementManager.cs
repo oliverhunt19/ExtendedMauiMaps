@@ -16,32 +16,16 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 
         protected readonly Func<GoogleMap> GetGoogleMap;
 
-        protected readonly Func<IEnumerable<TMapElement>> GetTMapElement;
-
-        //public IMauiContext MauiContext;
-        //public GoogleMap Map;
-
-        //protected readonly List<TAndroid> _aPolylines;
-
-        //protected readonly List<TMapElement> mapElements;
-
         protected readonly Mapper<TMapElement, TAndroid> MapAndroidMapper;
 
 
-        protected ElementManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map, Func<IEnumerable<TMapElement>> getMapElement)
+        protected ElementManager(Func<IMauiContext?> mauiContext, Func<GoogleMap> map)
         {
-            GetTMapElement = getMapElement;
             GetMauiContext = mauiContext;
             GetGoogleMap = map;
-            //_aPolylines = new List<TAndroid>();
-            //mapElements = new List<TMapElement>();
 
             MapAndroidMapper = new Mapper<TMapElement, TAndroid>();
         }
-
-        //protected abstract TAndroid AddElement(TAndroidOptions options);
-
-
 
         protected bool ElementClicked(TAndroid android)
         {
@@ -59,17 +43,6 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             bool handled = pin.SendElementClick();
             return handled;
         }
-
-
-        //public void AddElements(IEnumerable<TMapElement> mapPins)
-        //{
-        //    ClearAll();
-        //    foreach (var p in mapPins)
-        //    {
-        //        AddElement(p);
-
-        //    }
-        //}
 
         public void ClearAll()
         {
@@ -102,10 +75,9 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             {
                 return;
             }
+
             ClearElementOnMainThread(android);
             MapAndroidMapper.Remove(element);
-            //mapElements.Remove(element);
-            //_aPolylines.Remove(android);
         }
 
 
@@ -133,6 +105,7 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
                 {
                     return;
                 }
+
                 MauiMapElement<TAndroid>? options = mapElement.ToHandler(mauiContext)?.PlatformView as MauiMapElement<TAndroid>;
                 if(options != null)
                 {
@@ -153,36 +126,15 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
 
         }
 
-        //public void ElementUpdated(TMapElement mapElement, PropertyChangedEventArgs e)
-        //{
-        //    TAndroid? android = GetNativeFromElement(mapElement);
-        //    if (android is null)
-        //    {
-        //        return;
-        //    }
-
-        //    UpdateAndroidElement(mapElement,android,e);
-        //}
-
-        //protected abstract void UpdateAndroidElement(TMapElement mapElement, TAndroid androideleent, PropertyChangedEventArgs e);
-
+        
         protected TAndroid? GetNativeFromElement(TMapElement polygon)
         {
             return MapAndroidMapper[polygon];
+        }
 
-            //if (polygon.MapElementId is string)
-            //{
-            //    for (int i = 0; i < MapAndroidMapper.Count; i++)
-            //    {
-            //        var native = _aPolylines[i];
-            //        string id = GetNativeID(native);
-            //        if (id == (string)polygon.MapElementId)
-            //        {
-            //            return native;
-            //        }
-            //    }
-            //}
-            //return default;
+        protected TMapElement GetMapElementFromNative(TAndroid native)
+        {
+            return MapAndroidMapper[native];
         }
 
         /// <summary>
@@ -191,39 +143,6 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
         /// <param name="nativeElement"></param>
         /// <returns></returns>
         protected abstract string GetNativeID(TAndroid nativeElement);
-
-
-        protected TElement? GetElementFromNative<TElement>(TAndroid mapElement, IEnumerable<TElement> mapElements)
-            where TElement : IMapElement
-        {
-            string nativeID = GetNativeID(mapElement);
-            int index = ElementIdsSameIndex(nativeID, mapElements);
-            if(mapElements.ElementAt(index) is TElement element)
-            {
-                return element;
-            }
-            return default;
-        }
-
-
-        private static int ElementIdsSameIndex<T>(string Id, IEnumerable<T> mapElements)
-            where T : IMapElement
-        {
-            for(int i = 0; i < mapElements.Count(); i++)
-            {
-                var pin = mapElements.ElementAt(i);
-                if(pin?.MapElementId is string markerId)
-                {
-                    if(markerId == Id)
-                    {
-                        return i;
-                    }
-                }
-            }
-            return -1;
-        }
-
-
 
     }
 }
