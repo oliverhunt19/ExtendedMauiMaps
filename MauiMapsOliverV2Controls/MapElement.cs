@@ -1,4 +1,5 @@
 using MauiMapsOliverV2Controls;
+using Microsoft.Maui.Maps;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -7,7 +8,7 @@ namespace Microsoft.Maui.Controls.Maps
     /// <summary>
     /// Represents an element which is visually drawn on the <see cref="Map"/> control.
     /// </summary>
-    public partial class MapElement : Element
+    public partial class MapElement : Element, IMapElement
 	{
 
         public static readonly BindableProperty MapElementClickedCommandProperty = BindableProperty.Create(nameof(MapElementClickedCommand), typeof(ICommand), typeof(MapElement));

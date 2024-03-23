@@ -10,16 +10,12 @@ namespace Microsoft.Maui.Maps.Handlers
 
         public static IPropertyMapper<IFilledMapElement, FilledMapElementHandler<TVirtualView, TPlatformView>> FilledMapMapper = new PropertyMapper<IFilledMapElement, FilledMapElementHandler<TVirtualView, TPlatformView>>(StrokeMapElementMapper)
         {
-            [nameof(IFilledMapElement.Fill)] = UpdateMapFill
+            [nameof(IFilledMapElement.FillColour)] = UpdateMapFill
         };
 
         private static void UpdateMapFill(FilledMapElementHandler<TVirtualView, TPlatformView> handler, IFilledMapElement element)
         {
-            if(element.Fill is not SolidPaint solidPaint)
-            {
-                return;
-            }
-            handler.PlatformView.FillColour = solidPaint.Color;
+            handler.PlatformView.FillColour = element.FillColour;
         }
 
         public FilledMapElementHandler() : base(FilledMapMapper)

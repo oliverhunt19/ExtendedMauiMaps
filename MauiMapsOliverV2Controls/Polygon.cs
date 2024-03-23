@@ -1,33 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using MauiMapsOliverV2.Core;
 using MauiMapsOliverV2Controls;
-using Microsoft.Maui.Devices.Sensors;
-using Microsoft.Maui.Graphics;
+using System.Collections.ObjectModel;
 
 namespace Microsoft.Maui.Controls.Maps
 {
-	/// <summary>
-	/// Represents a polygon drawn on the map control.
-	/// </summary>
-	public partial class Polygon : StrokeMapElement
+    /// <summary>
+    /// Represents a polygon drawn on the map control.
+    /// </summary>
+    public partial class Polygon : StrokeMapElement, IPolygonMapElement
 	{
 		public static readonly BindableProperty GeopathProperty = BindableProperty.Create(nameof(Geopath), typeof(IReadOnlyList<Location>), typeof(Polyline), new ObservableCollection<Location>());
 
-        /// <summary>Bindable property for <see cref="FillColor"/>.</summary>
-        public static readonly BindableProperty FillColorProperty = BindableProperty.Create(
-			nameof(FillColor),
+        /// <summary>Bindable property for <see cref="FillColour"/>.</summary>
+        public static readonly BindableProperty FillColourProperty = BindableProperty.Create(
+			nameof(FillColour),
 			typeof(Color),
 			typeof(Polygon),
-			default(Color));
+			Colors.Transparent);
 
 		/// <summary>
 		/// Gets or sets the fill color. This is a bindable property.
 		/// </summary>
-		public Color FillColor
+		public Color FillColour
 		{
-			get => (Color)GetValue(FillColorProperty);
-			set => SetValue(FillColorProperty, value);
+			get => (Color)GetValue(FillColourProperty);
+			set => SetValue(FillColourProperty, value);
 		}
 
         /// <summary>

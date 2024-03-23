@@ -14,8 +14,12 @@
 
     }
 
-	public interface IMapStrokeElement : IMapElement, IStroke
+	public interface IMapStrokeElement : IMapElement
 	{
 		bool IsClickable { get; }
-	}
+
+		Color Stroke { get; }
+
+        double StrokeThickness { get; }
+    }
 }

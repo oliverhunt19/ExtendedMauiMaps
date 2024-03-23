@@ -1,14 +1,12 @@
 using MauiMapsOliverV2Controls;
-using Microsoft.Maui.Devices.Sensors;
-using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Maps;
 
 namespace Microsoft.Maui.Controls.Maps
 {
-	/// <summary>
-	/// Represents a circle drawn on the map control.
-	/// </summary>
-	public partial class Circle : StrokeMapElement
+    /// <summary>
+    /// Represents a circle drawn on the map control.
+    /// </summary>
+    public partial class Circle : StrokeMapElement , ICircleMapElement
 	{
 		/// <summary>Bindable property for <see cref="Center"/>.</summary>
 		public static readonly BindableProperty CenterProperty = BindableProperty.Create(
@@ -25,11 +23,11 @@ namespace Microsoft.Maui.Controls.Maps
 			default(Distance));
 
 		/// <summary>Bindable property for <see cref="FillColor"/>.</summary>
-		public static readonly BindableProperty FillColorProperty = BindableProperty.Create(
-			nameof(FillColor),
+		public static readonly BindableProperty FillColourProperty = BindableProperty.Create(
+			nameof(FillColour),
 			typeof(Color),
 			typeof(Circle),
-			null);
+			Colors.Transparent);
 
 		/// <summary>
 		/// Gets or sets the center location. This is a bindable property.
@@ -52,10 +50,10 @@ namespace Microsoft.Maui.Controls.Maps
 		/// <summary>
 		/// Gets or sets the fill color. This is a bindable property.
 		/// </summary>
-		public Color FillColor
+		public Color FillColour
 		{
-			get => (Color)GetValue(FillColorProperty);
-			set => SetValue(FillColorProperty, value);
+			get => (Color)GetValue(FillColourProperty);
+			set => SetValue(FillColourProperty, value);
 		}
-	}
+    }
 }

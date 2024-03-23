@@ -30,11 +30,7 @@ namespace MauiMapsOliverV2.Handlers.MapElement
 
         private static void UpdateMapStroke(StrokeMapElementHandler<TVirtualView, TPlatformView> handler, IMapStrokeElement mapElement)
         {
-            if(mapElement.Stroke is not SolidPaint solidPaint)
-            {
-                return;
-            }
-            handler.PlatformView.StrokeColor = solidPaint.Color;   
+            handler.PlatformView.StrokeColor = mapElement.Stroke;   
         }
 
         private static void UpdateMapStrokeWidth(StrokeMapElementHandler<TVirtualView, TPlatformView> handler, IMapStrokeElement element)
