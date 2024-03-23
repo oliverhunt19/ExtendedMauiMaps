@@ -13,7 +13,7 @@ namespace Microsoft.Maui.Maps.Handlers
 
         public static void UpdateCircleRadius(CircleMapElementHandler handler, ICircleMapElement circleMapElement)
         {
-            handler.PlatformView.Radius = circleMapElement.Radius.Kilometers;
+            handler.PlatformView.Radius = circleMapElement.Radius.Meters;
         }
 
         private static void UpdateCircleCentre(CircleMapElementHandler handler, ICircleMapElement element)

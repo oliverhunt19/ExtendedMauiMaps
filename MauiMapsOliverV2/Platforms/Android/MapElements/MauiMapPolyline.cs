@@ -15,31 +15,6 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
         }
 
 
-        
-
-        //private Color _color;
-        //public Color Color
-        //{
-        //    get => Element is not null ? new Color(Element.Color) : _color;
-        //    set
-        //    {
-        //        _color = value;
-        //        if (Element is not null)
-        //            Element.Color = value;
-        //    }
-        //}
-
-        private float _width;
-        public float Width
-        {
-            get => Element?.Width ?? _width;
-            set
-            {
-                _width = value;
-                if (Element is not null)
-                    Element.Width = value;
-            }
-        }
 
         private IList<LatLng> _points;
         public IList<LatLng> Points
@@ -113,7 +88,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
         }
 
-        private double _strokeWidth;
+        private double _strokeWidth = 5;
         public override double StrokeWidth
         {
             get => Element?.Width ?? _strokeWidth;
@@ -137,7 +112,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
         {
             var options = new PolylineOptions();
             options.InvokeColor(StrokeColor.AsColor());
-            options.InvokeWidth(Width);
+            options.InvokeWidth((float) StrokeWidth);
             // Will throw an exception when added to the map if Points is empty
             if(!Points.Any())
             {

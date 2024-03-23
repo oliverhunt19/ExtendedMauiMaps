@@ -107,7 +107,7 @@ namespace MauiMapsOliverV2.Platforms.Android.MapElements
             }
         }
 
-        private double _strokeWidth;
+        private double _strokeWidth = 5;
         public override double StrokeWidth
         {
             get => Element?.StrokeWidth ?? _strokeWidth;

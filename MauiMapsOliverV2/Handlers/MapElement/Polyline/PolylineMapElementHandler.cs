@@ -19,11 +19,21 @@ namespace Microsoft.Maui.Maps.Handlers
 {
     public partial class PolylineMapElementHandler : IPolylineMapElementHandler
     {
-        public static IPropertyMapper<IPolylineMapElement, PolylineMapElementHandler> PolylineMapper = new PropertyMapper<IPolylineMapElement, PolylineMapElementHandler>(ElementMapper)
+        public static IPropertyMapper<IPolylineMapElement, PolylineMapElementHandler> PolylineMapper = new PropertyMapper<IPolylineMapElement, PolylineMapElementHandler>(StrokeMapElementMapper)
         {
             [nameof(IPolylineMapElement.Geopath)] = UpdateGeopath
         };
 
-       
+
+        public PolylineMapElementHandler() : base(PolylineMapper)
+        {
+
+        }
+
+        public PolylineMapElementHandler(IPropertyMapper? mapper = null)
+        : base(mapper ?? PolylineMapper)
+        {
+        }
+
     }
 }
