@@ -1,11 +1,10 @@
 ﻿using Android.Gms.Maps;
-using ExtendedMauiMaps.IMauiMapElements;
 
 namespace MauiMapsOliverV2.IMauiMapElements
 {
 
 
-    public abstract partial class MauiMapElement<T> : IMauiMapElement where T : class
+    public abstract partial class MauiMapElement<T> where T : class
     {
         public MauiMapElement()
         {
