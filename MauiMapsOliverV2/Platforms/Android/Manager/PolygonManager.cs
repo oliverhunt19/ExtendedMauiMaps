@@ -16,17 +16,12 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             ShapeClicked(e.Polygon);
         }
 
-        //protected override APolygon AddElement(PolygonOptions options)
-        //{
-        //    return GetGoogleMap.Invoke().AddPolygon(options);
-        //}
-
         protected override void ClearElement(APolygon nativeElement)
         {
             nativeElement.Remove();
         }
 
-        protected override ClickedPolyline GetClickedPolyline(APolygon element)
+        protected override ClickedPolyline GetClickedElement(APolygon element)
         {
             return new PolygonClicked(element);
         }
@@ -35,15 +30,6 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
         {
             return nativeElement.Id;
         }
-
-        //protected override void UpdateAndroidElement(IPolygonMapElement mapElement, APolygon androideleent, PropertyChangedEventArgs e)
-        //{
-        //    e.UpdateElement((x) => androideleent.Clickable = x, mapElement.IsClickable, nameof(IPolygonMapElement.IsClickable));
-        //    e.UpdateElement((x) => androideleent.FillColor = x, (mapElement.Fill as SolidPaint).Color.AsColor(), nameof(IPolygonMapElement.Fill));
-        //    e.UpdateElement((x) => androideleent.StrokeColor = x, (mapElement.Stroke as SolidPaint).Color.AsColor(), nameof(IPolygonMapElement.Stroke));
-        //    e.UpdateElement((x) => androideleent.StrokeWidth = x, (float)mapElement.StrokeThickness, nameof(IPolygonMapElement.StrokeThickness));
-        //    //androideleent.Tag = (Java.Lang.Object) new object();
-        //}
 
         private class PolygonClicked : ClickedPolyline
         {

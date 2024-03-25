@@ -1,5 +1,5 @@
-﻿using Android.Gms.Maps.Model;
-using ExtendedMauiMaps.Core;
+﻿using ExtendedMauiMaps.Core;
+using ExtendedMauiMaps.Platforms.Android;
 using ExtendedMauiMaps.Platforms.Android.MapElements;
 using Microsoft.Maui.Handlers;
 
@@ -10,8 +10,8 @@ namespace ExtendedMauiMaps.Handlers.MapPin
 
 		public static void MapLocation(IMapPinHandler handler, IMapPin mapPin)
 		{
-			if (mapPin.Location != null)
-				handler.PlatformView.Position = new LatLng(mapPin.Location.Latitude, mapPin.Location.Longitude);
+			if(mapPin.Location != null)
+				handler.PlatformView.Position = mapPin.Location.ToALatLng();
 		}
 
 		public static void MapLabel(IMapPinHandler handler, IMapPin mapPin)
@@ -96,8 +96,7 @@ namespace ExtendedMauiMaps.Handlers.MapPin
 			//         }
 
 			//return markerOptions;
-
-			return new MauiMapMarker();
+			return new MauiMapMarker(()=> MauiContext);
 		}
     }
 }

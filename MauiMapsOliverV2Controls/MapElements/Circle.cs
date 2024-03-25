@@ -6,7 +6,7 @@ namespace ExtendedMauiMapsControl
     /// <summary>
     /// Represents a circle drawn on the map control.
     /// </summary>
-    public partial class Circle : StrokeMapElement, ICircleMapElement
+    public class Circle : FilledMapElement, ICircleMapElement
     {
         /// <summary>Bindable property for <see cref="Center"/>.</summary>
         public static readonly BindableProperty CenterProperty = BindableProperty.Create(
@@ -22,12 +22,7 @@ namespace ExtendedMauiMapsControl
             typeof(Circle),
             default(Distance));
 
-        /// <summary>Bindable property for <see cref="FillColor"/>.</summary>
-        public static readonly BindableProperty FillColourProperty = BindableProperty.Create(
-            nameof(FillColour),
-            typeof(Color),
-            typeof(Circle),
-            Colors.Transparent);
+        
 
         /// <summary>
         /// Gets or sets the center location. This is a bindable property.
@@ -47,13 +42,6 @@ namespace ExtendedMauiMapsControl
             set => SetValue(RadiusProperty, value);
         }
 
-        /// <summary>
-        /// Gets or sets the fill color. This is a bindable property.
-        /// </summary>
-        public Color FillColour
-        {
-            get => (Color) GetValue(FillColourProperty);
-            set => SetValue(FillColourProperty, value);
-        }
+        
     }
 }

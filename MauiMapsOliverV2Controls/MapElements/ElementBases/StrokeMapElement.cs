@@ -2,7 +2,7 @@
 
 namespace ExtendedMauiMapsControl
 {
-    public partial class StrokeMapElement : MapElement, IMapStrokeElement
+    public class StrokeMapElement : MapElement, IMapStrokeElement
     {
         /// <summary>Bindable property for <see cref="Stroke"/>.</summary>
 		public static readonly BindableProperty StrokeProperty = BindableProperty.Create(

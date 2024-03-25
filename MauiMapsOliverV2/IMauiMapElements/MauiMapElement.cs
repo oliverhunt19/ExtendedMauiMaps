@@ -1,6 +1,8 @@
-﻿namespace MauiMapsOliverV2.IMauiMapElements
+﻿using ExtendedMauiMaps.IMauiMapElements;
+
+namespace MauiMapsOliverV2.IMauiMapElements
 {
-    public abstract partial class MauiMapElement<T> where T : class
+    public abstract partial class MauiMapElement<T> : IMauiMapElement where T : class
     {
         protected WeakReference<T>? WeakRef { get; private set; }
         protected T? Element => WeakRef?.TryGetTarget(out var e) == true ? e : null;

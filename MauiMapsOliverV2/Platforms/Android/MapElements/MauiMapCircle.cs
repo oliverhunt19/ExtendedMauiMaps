@@ -1,19 +1,19 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using ExtendedMauiMaps.IMauiMapElements;
+using MauiMapsOliverV2.Utils;
 using Microsoft.Maui.Graphics.Platform;
-using ACircle = Android.Gms.Maps.Model.Circle;
 using Color = Android.Graphics.Color;
 
 namespace ExtendedMauiMaps.Platforms.Android.MapElements
 {
-    public class MauiMapCircle : MauiFilledMapElement<ACircle>
+    public class MauiMapCircle : MauiFilledMapElement<Circle>
     {
         public MauiMapCircle()
         {
         }
 
-        protected override ACircle AddToMapsInternal(GoogleMap map)
+        protected override Circle AddToMapsInternal(GoogleMap map)
         {
             var options = new CircleOptions();
             options.InvokeCenter(Center);
@@ -23,7 +23,9 @@ namespace ExtendedMauiMaps.Platforms.Android.MapElements
             options.InvokeFillColor(FillColour.AsColor());
             options.Visible(Visible);
             options.InvokeZIndex(ZIndex);
-            return map.AddCircle(options);
+            Circle circle = map.AddCircle(options);
+            circle.Tag = new JavaHolder<string>("Hello");
+            return circle;
         }
 
         private LatLng _center = new LatLng(0,0);

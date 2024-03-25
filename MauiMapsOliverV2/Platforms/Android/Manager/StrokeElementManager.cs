@@ -22,12 +22,12 @@ namespace ExtendedMauiMaps.Platforms.Android.Manager
             clickedPolyline?.Unclicked();
             if(!handled)
             {
-                clickedPolyline = GetClickedPolyline(nativeElement);
+                clickedPolyline = GetClickedElement(nativeElement);
                 clickedPolyline.Clicked();
             }
         }
 
-        protected abstract ClickedPolyline GetClickedPolyline(TAndroid element);
+        protected abstract ClickedPolyline GetClickedElement(TAndroid element);
 
         protected abstract class ClickedPolyline
         {

@@ -7,7 +7,7 @@ namespace ExtendedMauiMapsControl
     /// <summary>
     /// Represents an element which is visually drawn on the <see cref="Map"/> control.
     /// </summary>
-    public partial class MapElement : Element, IMapElement
+    public class MapElement : Element, IMapElement
     {
 
         public static readonly BindableProperty MapElementClickedCommandProperty = BindableProperty.Create(nameof(MapElementClickedCommand), typeof(ICommand), typeof(MapElement));

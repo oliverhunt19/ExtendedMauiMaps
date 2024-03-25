@@ -1,21 +1,15 @@
 using ExtendedMauiMaps.Core;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace ExtendedMauiMapsControl
 {
     /// <summary>
-    /// Represents a polyline drawn on the map control.
+    /// Represents a polygon drawn on the map control.
     /// </summary>
-    public partial class Polyline : StrokeMapElement, IPolylineMapElement
+    public class Polygon : FilledMapElement, IPolygonMapElement
     {
-        public static readonly BindableProperty GeopathProperty = BindableProperty.Create(nameof(Geopath), typeof(IList<Location>), typeof(Polyline), new ObservableCollection<Location>());
+        public static readonly BindableProperty GeopathProperty = BindableProperty.Create(nameof(Geopath), typeof(IReadOnlyList<Location>), typeof(Polyline), new ObservableCollection<Location>());
 
-
-        private void OnGeopathCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-        {
-            Handler?.UpdateValue("Geopath");
-        }
 
         /// <summary>
         /// Gets a list of locations on the map which forms the polyline on the map.
@@ -29,10 +23,11 @@ namespace ExtendedMauiMapsControl
             }
         }
 
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Polyline"/> class.
+        /// Initializes a new instance of the <see cref="Polygon"/> class.
         /// </summary>
-        public Polyline()
+        public Polygon()
         {
             var observable = new ObservableCollection<Location>();
             observable.CollectionChanged += (sender, args) => OnPropertyChanged(nameof(Geopath));
