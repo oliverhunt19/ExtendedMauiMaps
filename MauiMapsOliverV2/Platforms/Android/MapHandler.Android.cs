@@ -5,14 +5,12 @@ using ExtendedMauiMaps.Core;
 using ExtendedMauiMaps.Platforms.Android;
 using ExtendedMauiMaps.Platforms.Android.Manager;
 using ExtendedMauiMaps.Primitives;
-using Java.Lang;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Internals;
 using Microsoft.Maui.Handlers;
 using System.Collections;
 using System.Collections.Specialized;
 using IMap = ExtendedMauiMaps.Core.IMap;
-using Math = System.Math;
 
 namespace ExtendedMauiMaps.Handlers.Map
 {
@@ -404,7 +402,7 @@ namespace ExtendedMauiMaps.Handlers.Map
 					Map.MoveCamera(update);
 				}
 			}
-			catch (IllegalStateException exc)
+			catch (Java.Lang.IllegalStateException exc)
 			{
 				MauiContext?.Services.GetService<ILogger<MapHandler>>()?.LogWarning(exc, $"MoveToRegion exception");
 			}
