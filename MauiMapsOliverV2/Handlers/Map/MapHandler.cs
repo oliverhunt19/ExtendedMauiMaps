@@ -17,7 +17,7 @@ namespace ExtendedMauiMaps.Handlers.Map
 {
     public partial class MapHandler : IMapHandler
 	{
-		public static IPropertyMapper<IMap, IMapHandler> Mapper = new PropertyMapper<IMap, IMapHandler>(ViewHandler.ViewMapper)
+		public static IPropertyMapper<IMap, MapHandler> Mapper = new PropertyMapper<IMap, MapHandler>(ViewHandler.ViewMapper)
 		{
 			[nameof(IMap.MapType)] = MapMapType,
 			[nameof(IMap.IsShowingUser)] = MapIsShowingUser,
@@ -27,7 +27,7 @@ namespace ExtendedMauiMaps.Handlers.Map
 		};
 
 
-		public static CommandMapper<IMap, IMapHandler> CommandMapper = new(ViewCommandMapper)
+		public static CommandMapper<IMap, MapHandler> CommandMapper = new(ViewCommandMapper)
 		{
 			[nameof(IMap.MoveToRegion)] = MapMoveToRegion,
 			//[nameof(IMapHandler.UpdateMapElement)] = MapUpdateMapElement,
