@@ -1,13 +1,16 @@
 ﻿using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using Android.Graphics.Drawables;
 using MauiMapsOliverV2.IMauiMapElements;
 
 namespace ExtendedMauiMaps.Platforms.Android.MapElements
 {
     public class MauiMapMarker : MauiMapElement<Marker>
     {
-        public MauiMapMarker()
+        readonly Func<IMauiContext?> GetMauiContext;
+        public MauiMapMarker(Func<IMauiContext?> getMauiContext)
         {
+            GetMauiContext = getMauiContext;
             _title = "";
             _snippet = "";
             _position = new LatLng(0, 0);
@@ -147,14 +150,30 @@ namespace ExtendedMauiMaps.Platforms.Android.MapElements
             }
         }
 
-        private BitmapDescriptor _icon;
-        public BitmapDescriptor Icon
+        private ImageSource _icon;
+        public ImageSource Icon
         {
             get => _icon;
             set
             {
                 _icon = value;
-                Element?.SetIcon(_icon);
+                SetAImageMarkerIcon(_icon,(x)=> Element?.SetIcon(x));
+            }
+        }
+
+        private void SetAImageMarkerIcon(ImageSource imageSource, Action<BitmapDescriptor> setBitmapDescriptor)
+        {
+            IMauiContext? mauiContext = GetMauiContext.Invoke();
+            if(mauiContext is not null)
+            {
+                imageSource.LoadImage(mauiContext, result =>
+                {
+                    if(result?.Value is BitmapDrawable bitmapDrawable)
+                    {
+                        BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.FromBitmap(bitmapDrawable.Bitmap);
+                        setBitmapDescriptor.Invoke(bitmapDescriptor);
+                    }
+                });
             }
         }
 
@@ -179,7 +198,7 @@ namespace ExtendedMauiMaps.Platforms.Android.MapElements
             options.SetRotation(Rotation);
             options.Anchor(Anchor.u, Anchor.v);
             options.InfoWindowAnchor(InfoWindowAnchor.u, InfoWindowAnchor.v);
-            options.SetIcon(Icon);
+            SetAImageMarkerIcon(Icon, (x) => options.SetIcon(x));
             options.Flat(Flatten);
             return map.AddMarker(options);
         }
