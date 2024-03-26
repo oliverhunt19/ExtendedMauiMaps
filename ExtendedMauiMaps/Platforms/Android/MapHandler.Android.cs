@@ -63,9 +63,13 @@ namespace ExtendedMauiMaps.Handlers.Map
 		}
         protected override MapView CreatePlatformView()
 		{
-			MapView mapView = new MapView(Context);
-			mapView.OnCreate(s_bundle);
-			mapView.OnResume();
+            MapView? mapView = AndroidMapPool.Get();
+            if(mapView == null)
+            {
+                mapView = new MapView(Context);
+                mapView.OnCreate(s_bundle);
+                mapView.OnResume();
+            }
 			return mapView;
 		}
 

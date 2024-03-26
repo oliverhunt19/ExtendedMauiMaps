@@ -18,7 +18,7 @@ namespace ExtendedMauiMaps.Handlers.Map
 
 		protected override MauiMKMapView CreatePlatformView()
 		{
-			return MapPool.Get() ?? new MauiMKMapView(this);
+			return IOSMapPool.Get() ?? new MauiMKMapView(this);
 		}
 
 		protected override void ConnectHandler(MauiMKMapView platformView)
@@ -33,7 +33,7 @@ namespace ExtendedMauiMaps.Handlers.Map
 
 			// This handler is done with the MKMapView; we can put it in the pool
 			// for other rendererers to use in the future
-			MapPool.Add(platformView);
+			IOSMapPool.Add(platformView);
 		}
 
         public void UpdateMapElement(IMapElement element, PropertyChangedEventArgs e)
