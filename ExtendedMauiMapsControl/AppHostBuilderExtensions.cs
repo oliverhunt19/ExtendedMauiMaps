@@ -24,7 +24,7 @@ namespace ExtendedMauiMapsControl
         /// <param name="builder">The <see cref="MauiAppBuilder"/> to configure.</param>
         /// <returns>The configured <see cref="MauiAppBuilder"/>.</returns>
         /// <exception cref="NotImplementedException">Thrown on Windows because the maps control currently is not implemented for Windows.</exception>
-        public static MauiAppBuilder UseMauiMaps(this MauiAppBuilder builder)
+        public static MauiAppBuilder UseExtendedMauiMaps(this MauiAppBuilder builder)
         {
             builder
                 .ConfigureMauiHandlers(handlers =>
