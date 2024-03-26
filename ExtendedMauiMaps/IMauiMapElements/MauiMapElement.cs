@@ -21,6 +21,9 @@ namespace MauiMapsOliverV2.IMauiMapElements
             WeakRef = null;
         }
 
-        protected abstract void RemoveFromMapInternal();
+        protected virtual void RemoveFromMapInternal()
+        {
+
+        }
     }
 }

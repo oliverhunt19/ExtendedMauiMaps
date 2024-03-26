@@ -3,7 +3,7 @@ using MapKit;
 
 namespace ExtendedMauiMaps.Platforms.iOS.MapElements
 {
-    public class MauiMapPolyline : MauiStrokeMapElement<MKPolyline>
+    public class MauiMapPolyline : MauiStrokeMapElement<MKPolylineRenderer>
     {
         public override bool Visible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public override float ZIndex { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -14,9 +14,9 @@ namespace ExtendedMauiMaps.Platforms.iOS.MapElements
         public override Color StrokeColor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public override double StrokeWidth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        protected override MKPolyline AddToMapsInternal()
+        protected override MKPolylineRenderer AddToMapsInternal(MKMapView mapView)
         {
-            return new MKPolyline();
+            return new MKPolylineRenderer();
         }
 
         protected override void RemoveFromMapInternal()

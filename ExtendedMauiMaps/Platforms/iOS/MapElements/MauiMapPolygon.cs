@@ -3,7 +3,7 @@ using MapKit;
 
 namespace ExtendedMauiMaps.Platforms.iOS.MapElements
 {
-    public class MauiMapPolygon : MauiFilledMapElement<MKPolygon>
+    public class MauiMapPolygon : MauiFilledMapElement<MKPolygonRenderer>
     {
         public override bool Visible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public override float ZIndex { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -15,14 +15,21 @@ namespace ExtendedMauiMaps.Platforms.iOS.MapElements
         public override Color StrokeColor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public override double StrokeWidth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        protected override MKPolygon AddToMapsInternal()
+        private void SetColour()
         {
-            throw new NotImplementedException();
+            if(Element is not null)
+                Element.FillColor = UIKit.UIColor.FromRGBA(255,255,255, 255);
+        }
+
+        protected override MKPolygonRenderer AddToMapsInternal(MKMapView mapView)
+        {
+            MKPolygon.FromPoints([new MKMapPoint(1,1)]);
+            return new MKPolygonRenderer();
         }
 
         protected override void RemoveFromMapInternal()
         {
-            throw new NotImplementedException();
+            Element.re
         }
     }
 }

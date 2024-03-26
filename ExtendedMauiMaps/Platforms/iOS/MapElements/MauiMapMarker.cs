@@ -159,9 +159,9 @@ namespace ExtendedMauiMaps.Platforms.iOS.MapElements
             throw new NotImplementedException();
         }
 
-        protected override MKPointAnnotation AddToMapsInternal()
+        protected override MKPointAnnotation AddToMapsInternal(MKMapView mapView)
         {
-            return new MKPointAnnotation();
+            throw new NotImplementedException();
         }
     }
 }

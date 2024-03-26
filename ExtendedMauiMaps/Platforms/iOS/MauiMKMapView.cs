@@ -32,6 +32,8 @@ namespace ExtendedMauiMaps.Platforms.iOS
                 Cleanup();
         }
 
+        
+
         protected virtual MKOverlayRenderer GetViewForOverlayDelegate(MKMapView mapview, IMKOverlay overlay)
         {
             MKOverlayRenderer? overlayRenderer = null;
